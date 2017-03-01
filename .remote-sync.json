@@ -1,0 +1,20 @@
+{
+  "transport": "ftp",
+  "uploadOnSave": false,
+  "useAtomicWrites": false,
+  "deleteLocal": false,
+  "hostname": "teemates.net",
+  "port": "21",
+  "target": "/public_html",
+  "ignore": [
+      ".remote-sync.json",
+      ".git/**",
+      "src/.git/**",
+      "src/.env",
+      "/src/node_modules/**",
+      "src/node_modules/**"
+  ],
+  "username": "teema768366",
+  "password": "Sukhjeet2017",
+  "watch": []
+}
