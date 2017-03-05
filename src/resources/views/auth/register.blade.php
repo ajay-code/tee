@@ -28,7 +28,7 @@
                                 <div class="col-md-5 col-md-offset-2">
                                     <div class=" form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                         <div class="">
-                                            <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ session('social')['email']? session('social')['email']:old('email') }}" required>
+                                            <input id="email" type="email" class="form-control" name="email" placeholder="E-Mail Address" value="{{ old('email') }}" required>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -42,7 +42,7 @@
                                 <div class="col-md-5 col-md-offset-0">
                                 <div class=" form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                                     <div class="">
-                                        <input id="firstname" type="text" class="form-control" name="firstname" placeholder="First Name" value="{{ session('social')['firstname']? session('social')['firstname']:old('firstname') }}" required >
+                                        <input id="firstname" type="text" class="form-control" name="firstname" placeholder="First Name" value="{{ old('firstname') }}" required >
 
                                         @if ($errors->has('firstname'))
                                             <span class="help-block">
@@ -56,7 +56,7 @@
                                 <div class="col-md-5 col-md-offset-2">
                                 <div class=" form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                     <div class="">
-                                        <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="{{ session('social')['lastname']? session('social')['lastname']:old('lastname') }}" required >
+                                        <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}" required >
 
                                         @if ($errors->has('lastname'))
                                             <span class="help-block">
@@ -93,7 +93,7 @@
                                 <div class=" form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
                                     <div class="">
                                         <input id="dob" type="date" class="form-control" name="dob" placeholder="DOB"
-                                        value="{{ session('social')['dob']? session('social')['dob']:old('dob') }}" required >
+                                        value="{{ old('dob') }}" required >
 
                                         @if ($errors->has('dob'))
                                             <span class="help-block">
@@ -107,7 +107,7 @@
                                 <div class="col-md-5 col-md-offset-2">
                                     <div class=" form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                                         <div class="">
-                                            <input id="phone_number" type="number" class="form-control" name="phone_number" placeholder="Phone Number" value="{{ old('phone_number') }}" required>
+                                            <input id="phone_number" type="number" class="form-control" name="phone_number" placeholder="Phone Number (Optional)" value="{{ old('phone_number') }}" >
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -137,15 +137,15 @@
                                         <div class="">
 
                                             <select id="sex" class="form-control" name="sex"
-                                            value="{{ session('social')['sex']? session('social')['sex']:old('sex') }}" required>
+                                            value="{{ old('sex') }}" required>
                                                 <option value="">Gender</option>
                                                 <option value="male"
                                                 {{
-                                                    (session('social')['sex']? session('social')['sex']:old('sex')) == 'male' ? "selected":"" }}
+                                                    old('sex') == 'male' ? "selected":"" }}
                                                 >Male</option>
                                                 <option value="female"
                                                 {{
-                                                    (session('social')['sex']? session('social')['sex']:old('sex')) == 'female' ? "selected":"" }}
+                                                    old('sex') == 'female' ? "selected":"" }}
                                                 >Female</option>
 
                                             </select>
