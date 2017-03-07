@@ -2,6 +2,7 @@
 
 namespace App;
 
+Use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -20,7 +21,10 @@ class User extends Authenticatable
        'updated_at',
        'dob'
    ];
-
+   public function setDobAttribute($value)
+   {
+       $this->attributes['dob'] = new Carbon($value);
+   }
     /**
      * The attributes that are mass assignable.
      *
@@ -38,6 +42,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The attributes that should be Added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = ['age'];
+
+    public function getAgeAttribute(){
+        return $this->dob->diff(Carbon::now());
+    }
 
 
 

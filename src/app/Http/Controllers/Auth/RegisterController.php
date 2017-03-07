@@ -57,10 +57,10 @@ class RegisterController extends Controller
             'username' => 'required|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'firstname' => 'required',
-            'lastname' => 'required',
-            'sex' => 'required',
-            'phone_number' => 'required',
-            'dob' => 'required|date',
+            'lastname' => '',
+            'sex' => 'string',
+            'phone_number' => 'regex:/[0-9]{10}/',
+            'dob' => 'date',
             'handicap' => 'digits_between:0,52'
 
         ]);

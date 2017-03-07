@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use Cookie;
 use App\User;
 use Socialite;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended();
+        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
     }
 
     // Google
@@ -81,7 +82,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended();
+        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
     }
 
     // Twitter
@@ -114,7 +115,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended();
+        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
     }
 
 
@@ -123,4 +124,5 @@ class SocialLoginController extends Controller
     {
         return User::where('email', $serviceUser->getEmail())->first();
     }
+
 }
