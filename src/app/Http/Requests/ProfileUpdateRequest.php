@@ -30,7 +30,8 @@ class ProfileUpdateRequest extends FormRequest
             'sex' => 'nullable|alpha',
             'phone_number' => 'nullable|regex:/[0-9]{10}/',
             'dob' => 'nullable|date',
-            'handicap' => 'digits_between:0,52'
+            'handicap' => 'digits_between:0,52',
+            'lang' => 'nullable|string'
         ];
     }
 }
