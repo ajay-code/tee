@@ -115,6 +115,31 @@
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class=" form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
+                                        <div class="">
+
+                                            <select id="lang" class="form-control" name="lang"
+                                            value="{{ old('lang') }}" >
+                                                <option value="">Language</option>
+                                                <option value="en"
+                                                {{
+                                                    (old('lang') ? old('lang') : $user->lang) == 'en' ? "selected":"" }}
+                                                >English</option>
+                                                <option value="fr"
+                                                {{
+                                                    (old('lang') ? old('lang') : $user->lang) == 'fr' ? "selected":"" }}
+                                                >French</option>
+
+                                            </select>
+
+                                            @if ($errors->has('sex'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('sex') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
 
 
