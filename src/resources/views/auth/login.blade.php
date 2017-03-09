@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">{{trans('form.login')}}</div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -13,12 +13,12 @@
                                 {{ csrf_field() }}
                                 <div class="form-group ">
                                     <div class="col-sm-10 col-sm-offset-1">
-                                        Login Into Your Account
+                                        {{ trans('form.log_into_account') }}
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <div class="col-sm-10 col-sm-offset-1">
-                                        <input id="email" type="email" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input id="email" type="email" class="form-control" placeholder="{{trans('form.email')}}" name="email" value="{{ old('email') }}" required autofocus>
 
                                         @if ($errors->has('email'))
                                             <span class="help-block">
@@ -30,7 +30,7 @@
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <div class="col-sm-10 col-sm-offset-1">
-                                        <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+                                        <input id="password" type="password" class="form-control" placeholder="{{ trans('form.password') }}" name="password" required>
 
                                         @if ($errors->has('password'))
                                             <span class="help-block">
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-10 col-sm-offset-1">
                                         <button type="submit" class="btn btn-primary btn-block">
-                                            Login
+                                            {{trans('form.login')}}
                                         </button>
 
 
@@ -57,12 +57,12 @@
                                         <div class="row">
                                             <div class="checkbox col-sm-6">
                                                 <label>
-                                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{trans('form.remember')}}
                                                 </label>
                                             </div>
                                             <div class="col-sm-6">
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    Forgot Your Password?
+                                                    {{trans('form.forgot_password')}}
                                                 </a>
                                             </div>
                                         </div>
@@ -75,26 +75,26 @@
                         <div class="col-sm-10 col-sm-offset-1" >
                             <div class="row">
                                 <div class="form-group">
-                                    <a href="{{ url('/register') }}">Don' have an account? Sign Up!</a>
+                                    <a href="{{ url('/register') }}">{{trans('form.dont_have_account')}}</a>
                                 </div>
                                 <div class="form-group">
                                     <a class="btn btn-block btn-social btn-google" href="{{url('/login/google')}}">
                                         <span class="fa fa-google"></span>
-                                        Sign in with Google
+                                        {{ trans('form.google_signin') }}
                                     </a>
                                 </div>
 
                                 <div class="form-group">
                                     <a class="btn btn-block btn-social btn-facebook" href="{{url('/login/facebook')}}">
                                         <span class="fa fa-facebook"></span>
-                                        Sign in with Facebook
+                                        {{ trans('form.facebook_signin') }}
                                     </a>
                                 </div>
 
                                 <div class="form-group">
                                     <a class="btn btn-block btn-social btn-twitter" href="{{url('/login/twitter')}}">
                                         <span class="fa fa-twitter"></span>
-                                        Sign in with Twitter
+                                        {{ trans('form.twitter_signin') }}
                                     </a>
                                 </div>
 

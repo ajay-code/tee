@@ -49,7 +49,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
+        return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
 
     // Google
@@ -82,7 +82,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
+        return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
 
     // Twitter
@@ -115,7 +115,7 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
-        return redirect()->intended()->withCookie( Cookie::make('lang', $user->lang) );
+        return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
 
 

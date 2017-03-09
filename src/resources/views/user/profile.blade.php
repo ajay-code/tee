@@ -22,8 +22,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Username
+                                        <span class="fa fa-hashtag text-primary"></span>
+                                        {{ trans('form.username') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -33,8 +33,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Firstname
+                                        <span class="fa fa-hashtag text-primary"></span>
+                                        {{ trans('form.firstname') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -44,8 +44,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Lastname
+                                        <span class="fa fa-hashtag text-primary"></span>
+                                        {{ trans('form.lastname') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -55,8 +55,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Email
+                                        <span class="fa fa-envelope text-primary"></span>
+                                        {{ trans('form.email') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -66,8 +66,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        BirthDay
+                                        <span class="fa fa-birthday-cake text-primary"></span>
+                                        {{ trans('form.dob') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -77,7 +77,7 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                        <span class="fa fa-hashtag text-primary"></span>
                                         Age
                                     </strong>
                                 </td>
@@ -88,8 +88,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Phone Number
+                                        <span class="fa fa-phone text-primary"></span>
+                                        {{ trans('form.phone') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -99,8 +99,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Gender
+                                        <span class="fa fa-hashtag text-primary"></span>
+                                        {{ trans('form.sex') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -111,8 +111,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Handicap
+                                        <span class="fa fa-hashtag text-primary"></span>
+                                        {{ trans('form.handicap') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">
@@ -122,8 +122,8 @@
                             <tr>
                                 <td>
                                     <strong>
-                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                                        Language
+                                        <span class="fa fa-language text-primary"></span>
+                                        {{ trans('form.language') }}
                                     </strong>
                                 </td>
                                 <td class="text-primary">

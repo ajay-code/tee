@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Cookie;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -50,7 +51,10 @@ class UserProfileController extends Controller
         // return $request->all();
         $user = Auth::user();
         $user->update($request->except('email'));
-        // Return $user;
+
+        // setting Users preferred language
+        Cookie::queue('lang', $user->lang, 2628000);
+
         return back();
     }
 

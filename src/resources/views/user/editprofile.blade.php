@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Edit Profile</div>
+                <div class="panel-heading">{{ trans('form.edit_profile') }}</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('updateprofile') }}">
                         {{ csrf_field() }}
                                 <div class="col-md-5 col-md-offset-1">
                                 <div class=" form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                     <div class="">
-                                        <input id="username" type="text" class="form-control" name="username" placeholder="username" value="{{ old('username') ? old('username') : $user->username  }}"  autofocus >
+                                        <input id="username" type="text" class="form-control" name="username" placeholder="{{ trans('form.username') }}" value="{{ old('username') ? old('username') : $user->username  }}"  autofocus >
 
                                         @if ($errors->has('username'))
                                             <span class="help-block">
@@ -26,7 +26,7 @@
 
                                 <div class=" form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                                     <div class="">
-                                        <input id="firstname" type="text" class="form-control" name="firstname" placeholder="First Name" value="{{ old('firstname') ? old('firstname') : $user->firstname }}" required >
+                                        <input id="firstname" type="text" class="form-control" name="firstname" placeholder="{{ trans('form.firstname') }}" value="{{ old('firstname') ? old('firstname') : $user->firstname }}" required >
 
                                         @if ($errors->has('firstname'))
                                             <span class="help-block">
@@ -38,7 +38,7 @@
 
                                 <div class=" form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
                                     <div class="">
-                                        <input id="lastname" type="text" class="form-control" name="lastname" placeholder="Last Name" value="{{ old('lastname') ? old('lastname') : $user->lastname }}" required >
+                                        <input id="lastname" type="text" class="form-control" name="lastname" placeholder="{{ trans('form.lastname') }}" value="{{ old('lastname') ? old('lastname') : $user->lastname }}" required >
 
                                         @if ($errors->has('lastname'))
                                             <span class="help-block">
@@ -68,7 +68,7 @@
                                     <div class=" form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                                         <div class="">
                                             <input id="phone_number" type="number" class="form-control"
-                                             name="phone_number" placeholder="Phone Number (Optional)"
+                                             name="phone_number" placeholder="{{ trans('form.phone') }}"
                                              value="{{ old('phone_number') ? old('phone_number') : $user->phone_number }}" >
 
                                             @if ($errors->has('email'))
@@ -81,7 +81,7 @@
 
                                     <div class=" form-group{{ $errors->has('handicap') ? ' has-error' : '' }}">
                                         <div class="">
-                                            <input id="handicap" type="number" max="52" min="0" class="form-control" name="handicap" placeholder="Handicap (0-52)" value="{{ old('handicap') ? old('handicap') : $user->handicap }}" >
+                                            <input id="handicap" type="number" max="52" min="0" class="form-control" name="handicap" placeholder="{{ trans('form.handicap') }} (0-52)" value="{{ old('handicap') ? old('handicap') : $user->handicap }}" >
 
                                             @if ($errors->has('handicap'))
                                                 <span class="help-block">
@@ -96,7 +96,7 @@
 
                                             <select id="sex" class="form-control" name="sex"
                                             value="{{ old('sex') }}" >
-                                                <option value="">Gender</option>
+                                                <option value="">{{ trans('form.sex') }}</option>
                                                 <option value="male"
                                                 {{
                                                     (old('sex') ? old('sex') : $user->sex) == 'male' ? "selected":"" }}
