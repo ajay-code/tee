@@ -11,6 +11,7 @@
                         {{ csrf_field() }}
                                 <div class="col-md-5 col-md-offset-1">
                                 <div class=" form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                    <label for="username">{{trans('form.username')}}</label>
                                     <div class="">
                                         <input id="username" type="text" class="form-control" name="username" placeholder="{{ trans('form.username') }}" value="{{ old('username') ? old('username') : $user->username  }}"  autofocus >
 
@@ -25,6 +26,7 @@
 
 
                                 <div class=" form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                                    <label for="firstname">{{trans('form.firstname')}}</label>
                                     <div class="">
                                         <input id="firstname" type="text" class="form-control" name="firstname" placeholder="{{ trans('form.firstname') }}" value="{{ old('firstname') ? old('firstname') : $user->firstname }}" required >
 
@@ -37,6 +39,7 @@
                                 </div>
 
                                 <div class=" form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                    <label for="lastname">{{trans('form.lastname')}}</label>
                                     <div class="">
                                         <input id="lastname" type="text" class="form-control" name="lastname" placeholder="{{ trans('form.lastname') }}" value="{{ old('lastname') ? old('lastname') : $user->lastname }}" required >
 
@@ -49,6 +52,7 @@
                                 </div>
 
                                 <div class=" form-group{{ $errors->has('dob') ? ' has-error' : '' }}">
+                                    <label for="dob">{{trans('form.dob')}}</label>
                                     <div class="">
                                         <input id="dob" type="date" class="form-control" name="dob" placeholder="DOB"
                                         value="{{ old('dob') ? old('dob') : $user->dob->toDateString() }}" >
@@ -66,6 +70,7 @@
 
 
                                     <div class=" form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
+                                        <label for="phone">{{trans('form.phone')}}</label>
                                         <div class="">
                                             <input id="phone_number" type="number" class="form-control"
                                              name="phone_number" placeholder="{{ trans('form.phone') }}"
@@ -80,6 +85,7 @@
                                     </div>
 
                                     <div class=" form-group{{ $errors->has('handicap') ? ' has-error' : '' }}">
+                                        <label for="handicap">{{trans('form.handicap')}}</label>
                                         <div class="">
                                             <input id="handicap" type="number" max="52" min="0" class="form-control" name="handicap" placeholder="{{ trans('form.handicap') }} (0-52)" value="{{ old('handicap') ? old('handicap') : $user->handicap }}" >
 
@@ -92,6 +98,7 @@
                                     </div>
 
                                     <div class=" form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                                        <label for="sex">{{trans('form.sex')}}</label>
                                         <div class="">
 
                                             <select id="sex" class="form-control" name="sex"
@@ -117,6 +124,7 @@
                                     </div>
 
                                     <div class=" form-group{{ $errors->has('lang') ? ' has-error' : '' }}">
+                                        <label for="language">{{trans('form.language')}}</label>
                                         <div class="">
 
                                             <select id="lang" class="form-control" name="lang"
@@ -133,9 +141,9 @@
 
                                             </select>
 
-                                            @if ($errors->has('sex'))
+                                            @if ($errors->has('lang'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('sex') }}</strong>
+                                                    <strong>{{ $errors->first('lang') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
