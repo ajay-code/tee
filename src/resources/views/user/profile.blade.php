@@ -71,7 +71,7 @@
                                     </strong>
                                 </td>
                                 <td class="text-primary">
-                                    {{ $user->dob->toFormattedDateString() ? $user->dob->toFormattedDateString() : '---' }}
+                                    {{ $user->dob ? $user->dob->toFormattedDateString() : '---' }}
                                 </td>
                             </tr>
                             <tr>

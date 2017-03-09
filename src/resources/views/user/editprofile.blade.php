@@ -55,7 +55,7 @@
                                     <label for="dob">{{trans('form.dob')}}</label>
                                     <div class="">
                                         <input id="dob" type="date" class="form-control" name="dob" placeholder="DOB"
-                                        value="{{ old('dob') ? old('dob') : $user->dob->toDateString() }}" >
+                                        value="{{ old('dob') ? old('dob') : $user->dob ? $user->dob->toDateString() : ''}}" >
 
                                         @if ($errors->has('dob'))
                                             <span class="help-block">

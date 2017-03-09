@@ -51,7 +51,8 @@ class User extends Authenticatable
     protected $appends = ['age'];
 
     public function getAgeAttribute(){
-        return $this->dob->diff(Carbon::now());
+
+        return $this->dob ? $this->dob->diff(Carbon::now()) : false ;
     }
 
 
