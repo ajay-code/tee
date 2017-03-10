@@ -69,7 +69,7 @@
                         <div class="col-md-5 col-md-offset-1">
 
 
-                                    <div class=" form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
+                                    <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
                                         <label for="phone">{{trans('form.phone')}}</label>
                                         <div class="">
                                             <input id="phone_number" type="number" class="form-control"

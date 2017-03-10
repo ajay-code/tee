@@ -92,27 +92,3 @@ function getRoundedCanvas(sourceCanvas) {
 
         return canvas;
 }
-
-
-
-// button.onclick = function () {
-//          var croppedCanvas;
-//          var roundedCanvas;
-//          var roundedImage;
-//
-//          if (!croppable) {
-//            return;
-//          }
-//
-//          // Crop
-//          croppedCanvas = cropper.getCroppedCanvas();
-//
-//          // Round
-//          roundedCanvas = getRoundedCanvas(croppedCanvas);
-//
-//          // Show
-//          roundedImage = document.createElement('img');
-//          roundedImage.src = roundedCanvas.toDataURL()
-//          result.innerHTML = '';
-//          result.appendChild(roundedImage);
-//        };
