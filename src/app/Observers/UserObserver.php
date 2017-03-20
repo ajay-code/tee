@@ -15,13 +15,13 @@ class UserObserver
     public function created(User $user)
     {
         if($user->sex == 'male'){
-            $user->avatar = 'avatar/blue.png';
+            $user->avatar = 'blue.png';
         }
         elseif ($user->sex == 'female') {
-            $user->avatar = 'avatar/pink.png';
+            $user->avatar = 'pink.png';
         }
         else{
-            $user->avatar = 'avatar/gray.png';
+            $user->avatar = 'gray.png';
         }
 
         $user->save();

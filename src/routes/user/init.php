@@ -1,3 +1,11 @@
 <?php
-require 'test.php';
+require 'main.php';
+require 'club.php';
 require 'profile.php';
+require 'location.php';
+require 'post.php';
+require 'other_users_profile.php';
+require 'friendrequest.php';
+
+
+

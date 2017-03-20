@@ -23,8 +23,9 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $user = auth()->user();
         return [
-            'username' => 'max:255',
+            'username' => 'required|max:255|unique:users,username,'.$user->id,
             'firstname' => 'required|string',
             'lastname' => 'nullable|string',
             'sex' => 'nullable|alpha',

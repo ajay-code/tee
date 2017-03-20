@@ -6,7 +6,7 @@
         <div class="col-sm-4 col-md-3">
             <div class="panel panel-default">
                 <div class="profile__image__container">
-                    <img id="avatar" src="{{ getStorageUrl($user->avatar) }}" class="profile__image" alt="">
+                    <img id="avatar" src="{{ $user->avatar() }}" class="profile__image" alt="">
                 </div>
             </div>
             <button id="upload-pic-button" class="btn btn-block btn-default" data-toggle="modal" data-target="#upload-pic">Change</button>
@@ -14,10 +14,11 @@
         <div class="col-sm-8 col-md-9">
             <div class="panel panel-default">
                 <div class="profile__detail">
-                    <div class="col-sm-6 col-sm-offset-1">
+                    <div class="row">
+                    <div class="col-md-6 col-sm-offset-1">
                     <h4>Information</h4>
                     <div class="table-responsive">
-                    <table class="table table-condensed table-responsive table-user-information">
+                    <table class="table table-responsive table-user-information">
                         <tbody>
                             <tr>
                                 <td>
@@ -130,10 +131,32 @@
                                     {{ $user->lang ? $user->lang: '---' }}
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="fa fa-language text-primary"></span>
+                                        {{ trans('common.preferredLocations') }}
+                                    </strong>
+                                </td>
+                                <td class="text-primary">
+                                    {{ $user->clubs()->count() }}
+                                    @if ($user->clubs()->count() > 0)
+                                        <a href="{{ route('user.locations') }}"> See All</a>
+                                    @else
+                                        <a href="{{ route('user.addlocation') }}"> Add</a>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="{{ url('posts') }}">Add Posts</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
-                    <a href="{{ route('updateprofile') }}"><button class="btn btn-primary">Edit</button></a>
+                    <a href="{{ route('user.editprofile') }}"><button class="btn btn-primary">Edit</button></a>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -158,7 +181,7 @@
       </div>
       <div class="modal-body">
                 <div class="img-container" >
-                    <img id="image" src="{{ getStorageUrl($user->avatar) }}" alt="">
+                    <img id="image" src="{{ $user->avatar() }}" alt="">
                 </div>
                 <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
                     <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">

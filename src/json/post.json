@@ -1,0 +1,12 @@
+{
+   "fields": [
+        {
+            "name": "body",
+            "type": "text"
+        },
+        {
+            "name": "user_id",
+            "type": "integer" 
+        }
+   ]
+}

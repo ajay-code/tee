@@ -21,3 +21,7 @@ const app = new Vue({
 
 require('cropperjs');
 require('./app/uploadImage');
+require('./app/acceptterms');
+require('./app/maps/init');
+
+

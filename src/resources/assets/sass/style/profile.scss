@@ -10,39 +10,34 @@
 }
 
 .profile__detail {
-    min-height: 500px;
+    min-height: 400px;
+    padding-bottom: 40px;
 }
 
-.cropper-view-box,
-    .cropper-face {
-      border-radius: 50%;
-    }
+.cropper-face,
+.cropper-view-box {
+    border-radius: 50%;
+}
 
-img{
+img {
     max-width: 100%;
 }
 
-
 .img-container,
 .img-preview {
-  background-color: #f7f7f7;
-  width: 60%;
-  margin: 0 auto;
-  text-align: center;
+    background-color: #f7f7f7;
+    width           : 60%;
+    margin          : 0 auto;
+    text-align      : center;
 }
 
 .img-container {
-  min-height: 200px;
-  max-height: 400px;
-  margin-bottom: 1rem;
+    min-height   : 200px;
+    max-height   : 400px;
+    margin-bottom: 1rem;
 }
 
-@media (min-width: 768px) {
-  .img-container {
-    min-height: 400px;
-  }
-}
 
 .img-container > img {
-  max-width: 100%;
+    max-width: 100%;
 }

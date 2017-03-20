@@ -57,11 +57,12 @@ class RegisterController extends Controller
             'username' => 'required|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'firstname' => 'required',
-            'lastname' => '',
-            'sex' => 'string',
-            'phone_number' => 'regex:/[0-9]{10}/',
-            'dob' => 'date',
-            'handicap' => 'digits_between:0,52'
+            'lastname' => 'nullable|string',
+            'sex' => 'nullable|string',
+            'phone_number' => 'nullable|regex:/[0-9]{10}/',
+            'dob' => 'nullable|date',
+            'handicap' => 'nullable|digits_between:0,52',
+            'terms_accepted' => 'required'
 
         ]);
     }
@@ -74,7 +75,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         return User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -84,7 +84,8 @@ class RegisterController extends Controller
             'sex' => $data['sex'],
             'phone_number' => $data['phone_number'],
             'dob' => $data['dob'],
-            'handicap' => $data['handicap']
+            'handicap' => $data['handicap'],
+            'terms_accepted' => true
         ]);
     }
 
@@ -109,6 +110,5 @@ class RegisterController extends Controller
         alert()->success('Confirmation Email has been sent to you');
 
         return redirect('/login');
-
     }
 }

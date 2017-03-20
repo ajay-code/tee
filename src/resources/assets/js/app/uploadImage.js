@@ -54,7 +54,7 @@ $('#upload-to-server').on('click', () => {
     roundedPhoto = getRoundedCanvas(cropper.getCroppedCanvas());
 
           var formData = new FormData();
-          formData.append('avatar', roundedPhoto.toDataURL('image/png'));
+          formData.append('avatar', roundedPhoto.toDataURL());
           formData.append('_token', window.Laravel.csrfToken);
 
           // Use `jQuery.ajax` method

@@ -28,9 +28,8 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ assetUrl('js/app.js') }}"></script>
+   @include('layouts.partials.footer')
+   @yield('scripts')
 
-    @include('sweet::alert')
 </body>
 </html>

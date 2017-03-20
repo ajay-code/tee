@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">{{ trans('form.edit_profile') }}</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('updateprofile') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('user.updateprofile') }}">
                         {{ csrf_field() }}
                                 <div class="col-md-5 col-md-offset-1">
                                 <div class=" form-group{{ $errors->has('username') ? ' has-error' : '' }}">

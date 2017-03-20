@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('handicap')->nullable();
             $table->integer('verified')->default(false);
             $table->string('lang')->default('en');
+            $table->boolean('terms_accepted')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

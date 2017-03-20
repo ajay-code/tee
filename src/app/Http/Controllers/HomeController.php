@@ -14,11 +14,12 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // user needs to be logged in to use these functionalities
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application HomePage.
      *
      * @return \Illuminate\Http\Response
      */
