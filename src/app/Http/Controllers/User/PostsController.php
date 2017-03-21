@@ -24,14 +24,17 @@ class PostsController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
+        $users = auth()->user()->getFriends()->pluck('id');
+        $users[] = auth()->user()->id; 
 
         if (!empty($keyword)) {
-            $posts = Post::where('body', 'LIKE', "%$keyword%")
+            $posts = Post::WhereIn('user_id', $users)
+                ->where('body', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->latest()
                 ->paginate($perPage);
         } else {
-            $posts = Post::latest()->paginate($perPage);
+            $posts = Post::WhereIn('user_id', $users)->latest()->paginate($perPage);
         }
 
         return view('posts.index', compact('posts'));

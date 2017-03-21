@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
                 <div class="img-container" >
-                    <img id="image" src="{{ $user->avatar() }}" alt="">
+                    <img id="image" src="{{ Auth::user()->avatar() }}" alt="">
                 </div>
                 <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
                     <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">

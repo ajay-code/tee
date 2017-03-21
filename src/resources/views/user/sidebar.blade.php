@@ -2,7 +2,7 @@
                 <div class="profile__image__container">
                     
 
-                    <img id="avatar" src="{{ auth()->user()->avatar() }}" class="profile__image" alt="profile Image">
+                    <img id="avatar" src="{{ Auth::user()->avatar() }}" class="profile__image" alt="profile Image">
                 </div>
                 <hr>
                 <ul>

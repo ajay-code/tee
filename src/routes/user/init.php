@@ -5,7 +5,7 @@ require 'profile.php';
 require 'location.php';
 require 'post.php';
 require 'other_users_profile.php';
-require 'friendrequest.php';
+require 'friends.php';
 
 
 

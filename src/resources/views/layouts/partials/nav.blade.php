@@ -58,6 +58,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('user.find.friends') }}">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                Find Friends
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('user.friendrequest') }}">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Friend Requests

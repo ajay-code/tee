@@ -33,10 +33,27 @@ class FriendController extends Controller
     */
     public function showFriendList()
     {
-    	$user = auth()->user();
-    	$friends = $user->getFriends();
+    	$friends = auth()->user()->getFriends();
+    	return view('user.friends', compact('friends'));
+    }
 
-    	return view('user.friends', compact('friends', 'user'));
+    /**
+    *   Return view of all Users
+    */
+    public function findFriends()
+    {
+        $CurrentUser = auth()->user();
+        $users = User::all()->except($CurrentUser->id); 
+        return view('user.findfriends', compact('CurrentUser', 'users'));
+    }
+
+    /**
+    *   unfriend the given User 
+    */
+    public function unfriend(User $user)
+    {
+        auth()->user()->unfriend($user);
+        return back();
     }
 
 }
