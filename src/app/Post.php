@@ -5,10 +5,11 @@ namespace App;
 
 use Cog\Likeable\Traits\HasLikes;
 use Illuminate\Database\Eloquent\Model;
+use BrianFaust\Commentable\HasComments;
 use Cog\Likeable\Contracts\HasLikes as HasLikesContract;
 class Post extends Model implements HasLikesContract
 {
-    use HasLikes;
+    use HasLikes, HasComments;
 
     /**
      * The database table used by the model.

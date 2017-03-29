@@ -8,6 +8,8 @@
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.3",
         "cybercog/laravel-likeable": "^2.1",
+        "faustbrian/laravel-commentable": "^2.1",
+        "hesto/multi-auth": "^1.0",
         "hootlex/laravel-friendships": "^1.0",
         "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layout.auth')
 @section('content')
 <div class="container">
     <div class="row">
@@ -28,7 +28,7 @@
             <div class="col-md-12">
                 <hr>
                 <div class="form-group">
-                    <a href="{{ route('user.addlocation') }}">
+                    <a href="{{ route('admin.club.create') }}">
                         <button class="btn btn-primary">Add More</button>
                     </a>
                 </div>
@@ -40,7 +40,9 @@
         <br>
     </div>
 </div>
-@endsection @section('scripts')
+@endsection
+
+@section('scripts')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYWNG227Qo2dW02qHZGSqj0Y3oOAwF5HQ&libraries=places&v=3&callback=allClubs">
 </script>
 @stop

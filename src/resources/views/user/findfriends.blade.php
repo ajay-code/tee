@@ -20,7 +20,7 @@
                                     <td>
                                         <strong>
                                             <img src="{{ $user->thumbnail() }}" alt="">
-                                            {{ $user->firstname }}
+                                            <a href="{{ route('other.user.profile', ['user' => $user->id]) }}">{{ $user->firstname }}</a>
                                         </strong>
                                     </td>
                                     <td class="text-primary">

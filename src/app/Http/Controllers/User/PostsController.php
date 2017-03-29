@@ -31,10 +31,11 @@ class PostsController extends Controller
             $posts = Post::WhereIn('user_id', $users)
                 ->where('body', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->with('likesCounter', 'user')
                 ->latest()
                 ->paginate($perPage);
         } else {
-            $posts = Post::WhereIn('user_id', $users)->latest()->paginate($perPage);
+            $posts = Post::WhereIn('user_id', $users)->with('likesCounter', 'user', 'comments.creator')->latest()->paginate($perPage);
         }
 
         return view('posts.index', compact('posts'));
@@ -146,5 +147,16 @@ class PostsController extends Controller
         Session::flash('flash_message', 'Post deleted!');
 
         return redirect('posts');
+    }
+
+    public function likePost(Post $post)
+    {
+        $post->like();
+        return back();
+    }
+    public function unlikePost(Post $post)
+    {
+        $post->unlike();
+        return back();
     }
 }

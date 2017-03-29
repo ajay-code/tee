@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layout.auth')
 
 @section('content')
 <div class="container">
@@ -12,7 +12,7 @@
 
         <hr>
 
-        <form method="post" action="{{ route('club.store') }}" >
+        <form method="post" action="{{ route('admin.club.store') }}" >
 
             {{ csrf_field() }}
 

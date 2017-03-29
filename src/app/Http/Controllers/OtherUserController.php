@@ -23,10 +23,14 @@ class OtherUserController extends Controller
     		alert()->info('user you are looking for is not found');
     		return redirect()->route('home');
     	}
+
     	if($user->id == auth()->user()->id){
     		return redirect()->route('user.profile');
     	}
-    	return view('other.user.profile', compact('user'));
+
+        $posts = $user->posts()->with('user','comments.creator')->latest()->get();
+        // return $posts;
+    	return view('other.user.profile', compact('user', 'posts'));
     }
 
     /**

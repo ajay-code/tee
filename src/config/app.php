@@ -174,6 +174,7 @@ return [
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         Cog\Likeable\Providers\LikeableServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        BrianFaust\Commentable\CommentableServiceProvider::class,
         /*
          * Application Service Providers...
          */

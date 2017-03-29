@@ -15,5 +15,10 @@
                     @if($user->hasFriendRequestFrom(Auth::user()))
                             <button class="btn btn-default">Already Sent Friend Request</button>
                     @endif
+                    @if ($user->isFriendWith(Auth::user()))
+                                            <a href="{{ route('unfriend', ['user' => $user->id ]) }}">
+                                                <button class="btn btn-primary">Unfriend</button>
+                                            </a>
+                                        @endif
                 </ul>
 </div>
