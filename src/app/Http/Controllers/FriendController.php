@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class FriendController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // user needs to be logged in to use these functionalities
+        $this->middleware('auth');
+    }
+    /**
     *	Return view of all friend request
     */
     public function showFriendRequests()
@@ -43,6 +53,7 @@ class FriendController extends Controller
     public function findFriends()
     {
         $CurrentUser = auth()->user();
+        $except = $CurrentUser->getFriends()->pluck('id');
         $users = User::all()->except($CurrentUser->id); 
         return view('user.findfriends', compact('CurrentUser', 'users'));
     }

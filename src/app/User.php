@@ -2,15 +2,15 @@
 
 namespace App;
 
-use App\Club;
 use Carbon\Carbon;
+use Cmgmyr\Messenger\Traits\Messagable;
 use Illuminate\Notifications\Notifiable;
 use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Friendable;
+    use Notifiable, Friendable, Messagable;
 
 
     /**
@@ -94,5 +94,13 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+    public function location()
+    {
+        return $this->hasOne(Location::class);
+    }
+    public function places()
+    {
+        return $this->hasMany(Place::class);
     }
 }

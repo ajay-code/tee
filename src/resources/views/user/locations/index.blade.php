@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container" >
     <div class="row">
         <div class="container" id="Create-Edit-Container">
             <h2 class="ui center aligned icon header">
-            All Your Preferred Locations
+            All your Locations
         </h2>
             <hr>
+            
+            <input id="location_id" type="hidden" name="location_id" >
             <div class="col-md-12">
                 <div class="form-group">
                     <input type="text" name="location" class="form-control" id="location" placeholder="Location" value disabled>
@@ -26,21 +28,33 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <hr>
-                <div class="form-group">
-                    <a href="{{ route('user.addlocation') }}">
-                        <button class="btn btn-primary">Add More</button>
-                    </a>
-                </div>
+                @if (auth()->user()->location()->get()->count() <= 0)
+                    <div class="form-group">
+                        <a href="{{ route('user.location.add') }}">
+                            <button class="btn btn-primary">Add your Location</button>
+                        </a>
+                    </div>
+                @else
+                    <div class="form-group">
+                        <a href="{{ route('user.location.edit') }}">
+                            <button class="btn btn-primary">Update your Location</button>
+                        </a>
+                    </div>
+                @endif
+                
+                
             </div>
-            </form>
         </div>
         <!-- close container -->
         <br>
         <br>
     </div>
 </div>
-@endsection @section('scripts')
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYWNG227Qo2dW02qHZGSqj0Y3oOAwF5HQ&libraries=places&v=3&callback=allLocations">
+@endsection 
+@section('scripts')
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('google.map.key') }}&libraries=places&v=3&callback=allUserLocations">
+</script> 
+<script>
+    console.log('{{ config('google.map.key') }}')
 </script>
 @stop

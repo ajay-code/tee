@@ -175,6 +175,7 @@ return [
         Cog\Likeable\Providers\LikeableServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         BrianFaust\Commentable\CommentableServiceProvider::class,
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
         /*
          * Application Service Providers...
          */

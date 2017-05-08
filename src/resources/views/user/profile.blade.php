@@ -135,15 +135,31 @@
                                 <td>
                                     <strong>
                                         <span class="fa fa-language text-primary"></span>
-                                        {{ trans('common.preferredLocations') }}
+                                        Your Clubs
                                     </strong>
                                 </td>
                                 <td class="text-primary">
                                     {{ $user->clubs()->count() }}
                                     @if ($user->clubs()->count() > 0)
-                                        <a href="{{ route('user.locations') }}"> See All</a>
+                                        <a href="{{ route('user.clubs') }}"> See All</a>
                                     @else
-                                        <a href="{{ route('user.addlocation') }}"> Add</a>
+                                        <a href="{{ route('user.club.add') }}"> Add</a>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="fa fa-language text-primary"></span>
+                                        Your Locations
+                                    </strong>
+                                </td>
+                                <td class="text-primary">
+                                    {{ $user->places()->count() }}
+                                    @if ($user->places()->count() > 0)
+                                        <a href="{{ route('user.places') }}"> See All</a>
+                                    @else
+                                        <a href="{{ route('user.place.add') }}"> Add</a>
                                     @endif
                                 </td>
                             </tr>

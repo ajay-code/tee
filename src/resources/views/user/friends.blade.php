@@ -4,47 +4,35 @@
 <div class="container">
     <div class="row profile">
         <div class="col-sm-4 col-md-3">
-            @include('user.partials.userpicsidebar')
+            @include('user.sidebar')
         </div>
         <div class="col-sm-8 col-md-9">
             <div class="panel panel-default">
-                <div class="profile__detail">
-                    <div class="row">
-                    <div class="col-md-6 col-sm-offset-1">
-                    <h4>Friend Requests</h4>
-                    <div class="table-responsive">
-                    <table class="table table-responsive table-user-information">
-                        <tbody>
-                            @foreach ($friends as $friend)
-                                <tr>
-                                    <td>
-                                        <strong>
-                                            <img src="{{ $friend->thumbnail() }}" alt="">
-                                            <a href="{{ route('other.user.profile', ['user' => $friend->id]) }}">{{ $friend->firstname }}</a>
-                                        </strong>
-                                    </td>
-                                    <td class="text-primary">
-                                        <a href="#"><button class="btn btn-primary">Unfriend</button></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
+                                <div class="col-sm-12">
+                                    <h2 style="color:#42b350"><i class="fa fa-users"></i> FRIENDS ({{ $friends->count() }})</h2>
+                                </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                @foreach ($friends as $friend)
+                                    <div class="col-md-3 col-sm-4 col-xs-6">
+                                                <div class="flex-center flex-direction-col friend">   
+                                                    <img class="block size-300x300" src="{{ $friend->avatar() }}" alt="">
+                                                    <p>
+                                                    <b>
+                                                        <a href="{{ route('other.user.profile', ['user' => $friend->id]) }}">{{ $friend->firstname }}</a>
+                                                    </b>
+                                                    </p>
+                                                </div>
+                                    </div>
+                                @endforeach
+                                
+                                </div>
+                            </div>
                     </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-
-</div>
-
-
-
-
-
+        
 {{-- Upload Picture Model --}}
 @include('user.partials.uploadmodal')
 @endsection

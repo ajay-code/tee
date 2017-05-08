@@ -109,3 +109,12 @@
     </div>
 </div>
 @endsection
+
+{{-- 
+@extends('layouts.test')
+
+@section('content')
+    @php
+        phpinfo();
+    @endphp
+@endsection --}}

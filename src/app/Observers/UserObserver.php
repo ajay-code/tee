@@ -14,6 +14,8 @@ class UserObserver
      */
     public function created(User $user)
     {
+
+        // Assign a profile Image
         if($user->sex == 'male'){
             $user->avatar = 'blue.png';
         }
@@ -23,6 +25,14 @@ class UserObserver
         else{
             $user->avatar = 'gray.png';
         }
+
+        // Assign Name
+        if($user->lastname !== null){
+            $user->name = $user->firstname . ' ' . $user->lastname;
+        }else{
+            $user->name = $user->firstname;
+        }
+           
 
         $user->save();
     }

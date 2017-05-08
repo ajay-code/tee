@@ -23,7 +23,7 @@ class PostsController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 15;
         $users = auth()->user()->getFriends()->pluck('id');
         $users[] = auth()->user()->id; 
 
@@ -37,7 +37,7 @@ class PostsController extends Controller
         } else {
             $posts = Post::WhereIn('user_id', $users)->with('likesCounter', 'user', 'comments.creator')->latest()->paginate($perPage);
         }
-
+        // dd($posts);
         return view('posts.index', compact('posts'));
     }
 

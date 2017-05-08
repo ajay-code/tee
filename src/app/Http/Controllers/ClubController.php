@@ -9,7 +9,7 @@ class ClubController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth:admin']);
+        $this->middleware(['web']);
     }
     /**
      * Display a listing of the resource.

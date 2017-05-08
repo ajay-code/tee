@@ -13,7 +13,14 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+/* Vuejs Configration */
+// Vue.config.debug = false;
+// Vue.config.silent = true;
+
+Vue.component('chat', require('./components/messanger/chat.vue'));
+Vue.component('message-left', require('./components/messanger/messageLeft.vue'));
+Vue.component('message-right', require('./components/messanger/messageRight.vue'));
+Vue.component('message-form', require('./components/messanger/form.vue'));
 
 const app = new Vue({
     el: '#app'

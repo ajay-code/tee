@@ -28,7 +28,7 @@ class OtherUserController extends Controller
     		return redirect()->route('user.profile');
     	}
 
-        $posts = $user->posts()->with('user','comments.creator')->latest()->get();
+        $posts = $user->posts()->with('user','comments.creator')->latest()->paginate();
         // return $posts;
     	return view('other.user.profile', compact('user', 'posts'));
     }

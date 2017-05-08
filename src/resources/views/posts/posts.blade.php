@@ -5,8 +5,20 @@
 		        @include('posts.partials.form')
 		    </div> <!-- End Of body -->
 		</div> <!-- End Of panel -->
-
-	    @each('posts.post', $posts, 'post')
-    
+		
+		<div class="">
+	    	@each('posts.post', $posts, 'post')
+		</div>
+		
+		@if ($posts->lastPage() > 1)
+			<div class="panel panel-default">
+			    <div class="panel-body ">
+			    	<div class="text-center">
+			       		{{ $posts->links() }}
+			    	</div>
+			    </div> <!-- End Of body -->
+			</div> <!-- End Of panel -->
+		@endif
+    	
 	</div><!-- End Of col 12 -->
 </div>

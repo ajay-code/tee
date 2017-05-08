@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('verified')->default(false);
             $table->string('lang')->default('en');
             $table->boolean('terms_accepted')->default(false);
+            $table->boolean('information_public')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

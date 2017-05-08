@@ -25,6 +25,7 @@
                     <input type="text" class="form-control input-sm" name="lng" id="lng" disabled>
                 </div>
             </div>
+            
             <div class="col-md-12">
                 <hr>
                 <div class="form-group">
@@ -43,6 +44,6 @@
 @endsection
 
 @section('scripts')
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYWNG227Qo2dW02qHZGSqj0Y3oOAwF5HQ&libraries=places&v=3&callback=allClubs">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('google.map.key') }}&libraries=places&v=3&callback=allClubs">
 </script>
 @stop

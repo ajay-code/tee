@@ -1,4 +1,4 @@
-window.allLocations = function(){
+window.allUserPlaces = function(){
 	let map = new google.maps.Map(document.getElementById('map'),{
 		center: {
             lat: 54.5259614,
@@ -10,7 +10,7 @@ window.allLocations = function(){
     let bounds = new google.maps.LatLngBounds();
     let markers = [];
 
-    axios.get(url.locations).then(res=>{
+    axios.get(url.userPlace).then(res=>{
         let clubs = res.data
         _.each(clubs, (club)=>{
            clubLatLng = new google.maps.LatLng(club.lat, club.lng);
@@ -27,10 +27,15 @@ window.allLocations = function(){
            markers.push(marker);
         });
     }).then(()=>{
-    	if(!bounds.isEmpty()){
-	        map.fitBounds(bounds);
-	        map.setCenter(bounds.getCenter());
-    	}
+    	if(markers.length == 1){
+            map.setCenter(bounds.getCenter());
+            map.setZoom(3)
+            console.log('bounds.getCenter()' + '12');
+        }
+        else if(!bounds.isEmpty()){
+            map.fitBounds(bounds);
+            map.setCenter(bounds.getCenter());
+        }
         _.each(markers, (marker) =>{
             marker.addListener('click', ()=>{
                     var lat = marker.getPosition().lat();
@@ -38,7 +43,7 @@ window.allLocations = function(){
                     $('#lat').val(lat);
                     $('#lng').val(lng);
                     $('#location').val(marker.location);
-                    $('#club-id').val(marker.id);
+                    $('#place_id').val(marker.id);
                     // recenter the map to the marker and zoom
                     map.panTo(marker.getPosition());
                     map.setZoom(10);

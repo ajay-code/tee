@@ -1,0 +1,143 @@
+body{
+	background-color: #f7f7f7;
+}
+
+#friends-list{
+	margin:20px 0px;
+}
+.padding-css{
+	padding:10px;
+}
+.friend-indi{
+	border:1px solid #ccc;
+	border-radius:5px;
+}
+.sidebar{
+	border:1px solid #ccc;
+	border-radius:5px;
+}
+.friend-name h3{
+	color:$brand-background;
+	font-size:20px;
+	text-align:center;
+}
+.user-image-friend{
+	margin:auto;
+}
+.user-image-friend img{
+	display: block; 
+	margin:auto;
+}
+
+/*wall*/
+.personal-menu{
+	padding:10px 0px;
+	border-radius:5px;
+	background-color: #fff;
+	border:1px solid #ccc;
+}
+.border-bottom{
+	border-bottom:1px solid $brand-background;
+}
+#wall ul{
+	padding:10px 10px;
+	list-style: none;
+}
+#wall ul li{
+	line-height: 40px;
+	color: $brand-background;
+	font-size: 14px;
+    font-weight: bold;
+}
+#wall ul a{
+	text-decoration: none;
+}
+.menu-bar-style i{
+	font-size:20px;
+	margin-right:10px;
+}
+.wall-con{
+	padding:10px 0px;
+	border-radius:5px;
+}
+.text-post{
+	color:#333;
+	width:100%;
+	height: 100px;
+	border:1px solid $brand-background;
+}
+.btn-send{
+	width:100%;
+	margin:auto;
+	line-height: 30px;
+	color:#fff;
+	background-color: $brand-background;
+	font-size: 15px;
+	border:1px solid $brand-background;
+	margin-top:65px;
+}
+.wall-margin{
+	margin-top:15px;
+}
+
+.user-post-details span{
+	display: block;
+}
+.user-post-details span:nth-child(1){
+	font-size: 20px;
+	color:$brand-background;
+}
+.user-post-details span:nth-child(2){
+	font-size: 15px;
+	font-style: italic;
+	color:#ccc;
+}
+.img-post img{
+	width:90%;
+}
+.text-post-share{
+	color:#333;
+	font-size:15px;
+}
+.likeshare{
+	font-size: 15px;
+	color:#ccc;
+}
+.likeshare i{
+	color:$brand-background;
+}
+.likeshare span{
+	margin-right: 15px;
+}
+.wall-posts{
+}
+.single-post{
+	border-bottom: 1px solid $brand-background;
+}
+.flex-center{
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+
+.flex-center image{
+	width: auto;
+}
+.flex-direction-col{
+	flex-direction: column;
+}
+
+.block{
+	display: block;
+}
+.size-300x300{
+	max-height: 300px ;
+	/* max-width: 300px ; */
+}
+
+.friend{
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}

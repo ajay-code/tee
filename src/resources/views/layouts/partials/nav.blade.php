@@ -46,18 +46,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('posts') }}">
-                                <i class="fa fa-" aria-hidden="true"></i>
-                                Posts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('user.friends') }}">
-                                <i class="fa fa-group" aria-hidden="true"></i>
-                                Friends
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('user.find.friends') }}">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Find Friends

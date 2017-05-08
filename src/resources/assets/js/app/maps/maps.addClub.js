@@ -28,7 +28,8 @@ window.initMap = function(){
 
         _.each(places, (place)=>{
             bounds.extend(place.geometry.location);
-            marker.setPosition(place.geometry.location);            
+            marker.setPosition(place.geometry.location);        
+            console.log(place.geometry.location);   
         });
 
         if(!bounds.isEmpty()){
@@ -46,4 +47,18 @@ window.initMap = function(){
         $('#lat').val(lat);
         $('#lng').val(lng);
     });
+
+    $('#find').on('click', function(e) {
+        e.preventDefault();
+        position = {
+            lat : parseFloat($('#lat').val()),
+            lng : parseFloat($('#lng').val())
+        }
+        console.log(position);
+
+        marker.setPosition(position);
+        map.setCenter(position); 
+        map.setZoom(12);
+    });
+    
 }

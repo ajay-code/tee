@@ -119,7 +119,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapUserRoutes()
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'auth'])
              ->namespace($this->namespace)
              ->group(base_path('routes/user/init.php'));
     }

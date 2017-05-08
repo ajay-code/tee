@@ -16,7 +16,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
-        "uxweb/sweet-alert": "^1.4"
+        "uxweb/sweet-alert": "^1.4",
+        "cmgmyr/messenger": "~2.0"
     },
     "require-dev": {
         "appzcoder/crud-generator": "^2.0",

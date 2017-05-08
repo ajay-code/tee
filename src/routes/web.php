@@ -1,4 +1,5 @@
 <?php
+require('test.php');
 /* User Login Routes */
 Auth::routes();
 

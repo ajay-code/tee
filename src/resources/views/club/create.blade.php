@@ -46,6 +46,12 @@
                 </div>
             </div>
 
+            <div class="col-md-12">
+                <div class="form-group">
+                    <button id="find" class="btn btn-primary">Find</button>
+                </div>
+            </div>
+
 
             <div class="col-md-12">
                 <hr>
@@ -67,6 +73,6 @@
 
 @section('scripts')
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYWNG227Qo2dW02qHZGSqj0Y3oOAwF5HQ&libraries=places&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('google.map.key') }}&libraries=places&v=3&callback=initMap">
     </script>
 @stop
