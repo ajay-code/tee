@@ -28,7 +28,7 @@ class CreateLikeTable extends Migration
         Schema::create('like', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('likeable_id')->unsigned();
-            $table->string('likeable_type', 255);
+            $table->string('likeable_type', 100);
             $table->integer('user_id')->unsigned()->index();
             $table->enum('type_id', [
                 'like',
