@@ -27,24 +27,25 @@ class CreateLikeTable extends Migration
     {
         Schema::create('like', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('likeable_id',8)->unsigned();
-            $table->string('likeable_type', 100);
-            $table->integer('user_id',8)->unsigned()->index();
+            $table->integer('likeable_id')->unsigned();
+            $table->string('likeable_type');
+            $table->integer('user_id')->unsigned()->index();
             $table->enum('type_id', [
                 'like',
                 'dislike',
             ])->default('like');
             $table->timestamp('created_at')->nullable();
 
-            $table->unique([
-                'likeable_id',
-                'likeable_type',
-                'user_id',
-            ], 'like_user_unique');
+            // $table->unique([
+            //     'likeable_id',
+            //     'likeable_type',
+            //     'user_id',
+            // ], 'like_user_unique');
 
             // $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
