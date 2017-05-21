@@ -9,7 +9,7 @@ class Location extends Model
     protected $guarded = ['id'];
 
      /*** RelationShips ***/
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

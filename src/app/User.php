@@ -22,6 +22,7 @@ class User extends Authenticatable
        'created_at',
        'updated_at',
        'dob',
+       'last_activity'
    ];
 
    /**
@@ -32,11 +33,18 @@ class User extends Authenticatable
    protected $casts = [
        'terms_accepted' => 'boolean',
        'verified' => 'boolean',
+       'loggedin' => 'boolean',
+       'online' => 'boolean'
    ];
 
     public function setDobAttribute($value)
     {
         $this->attributes['dob'] = new Carbon($value);
+    }
+
+    public function setLastActivityAttribute($value)
+    {
+        $this->attributes['last_activity'] = new Carbon($value);
     }
     /**
      * The attributes that are mass assignable.
@@ -44,7 +52,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','firstname', 'lastname', 'sex', 'phone_number', 'dob', 'handicap', 'verified', 'lang','terms_accepted'
+        'username', 'email', 'password','firstname', 'lastname', 'sex', 'phone_number', 'dob', 'handicap', 'verified', 'lang','terms_accepted', 'online', 'last_activity'
     ];
 
     /**
@@ -61,11 +69,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $appends = ['age'];
+    protected $appends = ['age', 'statusOnline'];
 
     public function getAgeAttribute()
     {
         return $this->dob ? $this->dob->diff(Carbon::now()) : false ;
+    }
+
+    public function getStatusOnlineAttribute()
+    {
+        return  is_null($this->last_activity) ? false :($this->last_activity->diffInMinutes(Carbon::now()) < 3 && $this->online) ;
     }
 
     public function avatar()

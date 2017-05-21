@@ -1,0 +1,40 @@
+.chatlist{
+	height: 70vh;
+}
+.chatlist a{
+	text-decoration: none;
+	color: inherit;
+	background-color: inherit;
+}
+
+.chatlist-item{
+	position: relative;
+	padding-left: 8px;
+    position: relative;
+    padding-top: 5px;
+}
+.chatlist-image{
+	border-radius: 50%;
+    height: 34px;
+    overflow: hidden;
+    top: -1px;
+    width: 34px;
+    display: inline-block;
+}
+
+.chatlist-name{
+	overflow: hidden;
+    padding-left: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dot{
+	margin-top: 12px;
+	margin-right: 17px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: green;
+
+}

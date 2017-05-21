@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top navbar--green">
+<nav class="navbar navbar-default navbar-fixed-top navbar--green">
     <div class="container">
         <div class="navbar-header">
 
@@ -77,3 +77,6 @@
         </div>
     </div>
 </nav>
+
+<div class="fixed-header-margin">
+</div>

@@ -8,6 +8,7 @@ Route::get('/unfriend/{user}', 'FriendController@unfriend')->name('unfriend');
 
 /*Find Friends*/
 Route::get('/friends/find', 'FriendController@findFriends')->name('user.find.friends');
+Route::get('/friends/find/location', 'FriendController@findFriendsUsingLocstion')->name('user.find.friendsbylocation');
 
 /*Find Friends Using PLace*/
 // Route::get('/friends/find', 'FriendController@findFriends')->name('user.find.friends');

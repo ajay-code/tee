@@ -5,6 +5,8 @@ require('./maps.allClubs');
 require('./maps.allUserLocations');
 require('./maps.allUserPlaces');
 require('./maps.changeLocation');
+require('./maps.findFriendsByLocation');
+
 
 url = {}
 flag = 'http://maps.google.com/mapfiles/kml/pal2/icon13.png';

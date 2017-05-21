@@ -27,4 +27,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function chatlist()
+    {
+        return view('layouts.partials.chatlistitems', compact('onlineFriends'));
+    }
 }

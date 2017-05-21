@@ -21,9 +21,9 @@ import eventHub from "../../event";
 
             }
         },
-        props: ['thread', 'users', 'postUrl', 'chatUrl'], 
+        props: ['postUrl', 'chatUrl'], 
         mounted() {
-            this.refresh()
+            this.refresh();
 
             setTimeout(()=>{
                 window.$('#chat').scrollTop(document.getElementById("chat").scrollHeight);
@@ -33,7 +33,9 @@ import eventHub from "../../event";
                 this.refresh()
             },5000)
 
-            eventHub.$on('posted', this.refresh)
+            eventHub.$on('posted',
+                this.refresh()
+            );
         },
         methods: {
             refresh(){

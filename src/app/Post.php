@@ -30,8 +30,12 @@ class Post extends Model implements HasLikesContract
      *
      * @var array
      */
-    protected $fillable = ['body', 'user_id'];
+    protected $fillable = ['body', 'user_id', 'image'];
 
+    public function imageUrl()
+    {
+        return getStorageUrl($this->image);
+    }
     /* Relationships */
     public function user()
     {

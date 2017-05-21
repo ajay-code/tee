@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-use App\Post;
-use Illuminate\Http\Request;
+use File;
+use Auth;
+use Image;
 use Session;
+use App\Post;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
@@ -61,14 +63,23 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
+        $image = Image::make($request->file('image'))->resize(null, 400, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        $imageFolder = 'posts/';
+        $imageExt = $request->file('image')->getClientOriginalExtension();
+        $imageName = Auth::id() . str_random(10) . time() . '.' .$imageExt;
+        $imagePath = $imageFolder . $imageName;
+        
         $requestData = [
             'body' => $request->body,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'image'  => $imagePath
         ];
-        
-        $post = Post::create($requestData);
 
-        Session::flash('flash_message', 'Post added!');
+        $image->save(storagePath($imagePath), 60);
+
+        $post = Post::create($requestData);
 
         return redirect('/posts');
     }

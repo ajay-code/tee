@@ -9,6 +9,7 @@ require 'other_users_profile.php';
 require 'friend.php';
 require 'comment.php';
 require 'messages.php';
+require 'settings.php';
 
 
 

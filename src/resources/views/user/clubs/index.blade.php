@@ -47,7 +47,8 @@
         <br>
     </div>
 </div>
-@endsection @section('scripts')
+@endsection 
+@section('scripts')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('google.map.key') }}&libraries=places&v=3&callback=allUserClubs">
 </script>
 @stop

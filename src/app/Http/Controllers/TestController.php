@@ -7,19 +7,9 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function addingName()
+    public function index()
     {
-    	$users = User::all();
-
-    	foreach ($users as $user) {
-    		if($user->lastname !== null){
-    			$user->name = $user->firstname . ' ' . $user->lastname;
-    			// dd($user);
-    		}else{
-    			$user->name = $user->firstname;
-    		}
-    		$user->save(); 
-    	}
-    	return $users;
+        return  User::all();
+                      
     }
 }

@@ -51,7 +51,7 @@ $('#upload-pic').on('shown.bs.modal', function(){
 });
 
 $('#upload-to-server').on('click', () => {
-    roundedPhoto = getRoundedCanvas(cropper.getCroppedCanvas());
+    roundedPhoto = cropper.getCroppedCanvas();
 
           var formData = new FormData();
           formData.append('avatar', roundedPhoto.toDataURL());

@@ -1,5 +1,5 @@
 <?php $class = $thread->isUnread(Auth::id()) ? 'alert-info' : ''; ?>
-
+{{-- {{ dd($thread) }} --}}
 <div class="alert col-sm-12 {{ $class }} border-bottom">
         @foreach($thread->users()->get() as $user)
             @unless(Auth::user()->id == $user->id)
@@ -29,7 +29,7 @@
         </a>
             <p class="email-style" style="display:block">({{ $thread->userUnreadMessagesCount(Auth::id()) }} unread)</p>
             <p class="email-style"> 
-                {!! $thread->latestMessage->body !!}
+                {{-- {!! $thread->latestMessage->body !!}  --}}
             </p>
         </div>
     </div>

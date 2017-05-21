@@ -53,32 +53,15 @@ class MessagesController extends Controller
      */
     public function show($id)
     {
-        /*User should be a friend of the Current user*/
-        $friend = User::find($id);
-        // dd(!auth()->user()->isFriendWith($user));
-        if(!auth()->user()->isFriendWith($friend)){
-            return redirect()->route('other.user.profile', [$user->id]);
-        }
+        $user = User::find($id);
+        
         $threads = Thread::forUser(Auth::user()->id)->latest('updated_at')->get();
-        try {
-            $thread = Thread::between([Auth::id(), $id])->latest('updated_at')->firstOrFail();
-        } catch (ModelNotFoundException $e) {
-            $thread = Thread::create(['subject' => '']);
-            $thread->addParticipant(Auth::id(), $id);
-        }
-        // show current user in list if not a current participant
-        // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
-        // don't show the current user in list
-        $userId = Auth::user()->id;
-        $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
-        $thread->markAsRead($userId);
-        $thread->load('messages.user');
 
-        return view('message.show', compact('threads','thread', 'users', 'friend'));
+        return view('message.show', compact('threads', 'user'));
     }
 
     /**
-     * Shows a message thread.
+     * Return the chat of a thread
      *
      * @param $id
      * @return mixed
@@ -88,17 +71,9 @@ class MessagesController extends Controller
         try {
             $thread = Thread::between([Auth::id(), $id])->latest('updated_at')->firstOrFail();
         } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
-            return '<h2><center>No chat Available Here</center></h2>';
+            return 'no chat available';
         }
 
-        $participant= Participant::where('thread_id',$thread->id)->where('user_id',Auth::user()->id)->first();
-        if(!$participant){
-            return '<h2><center>No chat Available Here</center></h2>';
-        }
-        // show current user in list if not a current participant
-        // $users = User::whereNotIn('id', $thread->participantsUserIds())->get();
-        // don't show the current user in list
         $userId = Auth::user()->id;
         $users = User::whereNotIn('id', $thread->participantsUserIds($userId))->get();
         $thread->markAsRead($userId);
@@ -106,6 +81,47 @@ class MessagesController extends Controller
         $messages = $thread->messages;
         // return $messages;
         return view('message.chat', compact('messages', 'users'));
+    }
+
+    /**
+     * Adds a new message to a current thread.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function update($id)
+    {
+        /*If user has permission to chat with the user*/
+        try {
+            $thread = Thread::between([Auth::id(), $id])->latest('updated_at')->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            $thread = Thread::create(['subject' => '']);
+            $thread->addParticipant(Auth::id(), $id);
+        }
+
+        $thread->activateAllParticipants();
+
+        // Message
+        Message::create(
+            [
+                'thread_id' => $thread->id,
+                'user_id'   => Auth::id(),
+                'body'      => Input::get('message'),
+            ]
+        );
+
+        // Add replier as a participant
+        $participant = Participant::where(
+            [
+                'thread_id' => $thread->id,
+                'user_id'   => Auth::user()->id,
+            ]
+        )->first();
+        
+        $participant->last_read = new Carbon;
+        $participant->save();
+
+        return 'success';
     }
 
     /**
@@ -164,47 +180,5 @@ class MessagesController extends Controller
         return redirect('messages');
     }
 
-    /**
-     * Adds a new message to a current thread.
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function update($id)
-    {
-        try {
-            $thread = Thread::between([Auth::id(), $id])->latest('updated_at')->firstOrFail();
-        } catch (ModelNotFoundException $e) {
-            Session::flash('error_message', 'The thread with ID: ' . $id . ' was not found.');
-            return redirect('messages');
-        }
-
-        $thread->activateAllParticipants();
-
-        // Message
-        Message::create(
-            [
-                'thread_id' => $thread->id,
-                'user_id'   => Auth::id(),
-                'body'      => Input::get('message'),
-            ]
-        );
-
-        // Add replier as a participant
-        $participant = Participant::firstOrCreate(
-            [
-                'thread_id' => $thread->id,
-                'user_id'   => Auth::user()->id,
-            ]
-        );
-        $participant->last_read = new Carbon;
-        $participant->save();
-
-        // Recipients
-        if (Input::has('recipients')) {
-            $thread->addParticipant(Input::get('recipients'));
-        }
-
-        return 'success';
-    }
+    
 }

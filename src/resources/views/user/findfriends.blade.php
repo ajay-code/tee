@@ -11,7 +11,7 @@
                 <div class="profile__detail">
                     <div class="row">
                     <div class="col-md-6 col-sm-offset-1">
-                    <h4>Friend Requests</h4>
+                    <h4>User List</h4>
                     <div class="table-responsive">
                     <table class="table table-responsive table-user-information">
                         <tbody>
@@ -55,9 +55,4 @@
 </div>
 
 
-
-
-
-{{-- Upload Picture Model --}}
-@include('user.partials.uploadmodal')
 @endsection

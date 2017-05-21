@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\User;
+use App\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FriendController extends Controller
 {
@@ -54,8 +57,48 @@ class FriendController extends Controller
     {
         $CurrentUser = auth()->user();
         $except = $CurrentUser->getFriends()->pluck('id');
+        $except[] = $CurrentUser->id;
         $users = User::all()->except($CurrentUser->id); 
         return view('user.findfriends', compact('CurrentUser', 'users'));
+    }
+
+    /**
+    *   Return view of all Users
+    */
+    public function findFriendsUsingLocstion()
+    {
+        $CurrentUser = auth()->user();
+        $except = $CurrentUser->getFriends()->pluck('id')->toArray();
+        $except[] = $CurrentUser->id;
+        $center = $CurrentUser->location;
+        $radius = 1000;
+        
+        // Select All the location with in the location of current user
+        $locations =  Location::select(
+                DB::raw("id, user_id, lat, lng, ( 
+                        3959 * acos( 
+                            cos( radians(  ?  ) ) *
+                            cos( radians( lat ) ) * 
+                            cos( radians( lng ) - radians(?) ) + 
+                            sin( radians(  ?  ) ) *
+                            sin( radians( lat ) ) 
+                        )
+                   ) AS distance")
+            )
+            ->having("distance", "<", "?")
+            ->orderBy("distance")
+            ->with('user')
+            ->take(20)
+            ->setBindings([$center->lat, $center->lng, $center->lat,  $radius])
+            ->get();
+            // ->except($center->id);
+
+        // Reject the current user and his friends from the list
+        $locations = $locations->reject(function($location) use($except){
+            // return in_array($location->user->id, $except);
+        });
+        // return $locations;
+        return view('user.findfriendsbylocation', compact('locations', 'except'));
     }
 
     /**

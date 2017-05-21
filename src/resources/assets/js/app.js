@@ -31,4 +31,9 @@ require('./app/uploadImage');
 require('./app/acceptterms');
 require('./app/maps/init');
 
+$(()=>{
+	setInterval(()=>{
+		axios.get('/settings/updatelastactivity');
+	},10000)
+})
 
