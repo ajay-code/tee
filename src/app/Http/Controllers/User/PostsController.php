@@ -63,21 +63,25 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $image = Image::make($request->file('image'))->resize(null, 400, function ($constraint) {
+        $imagePath = null;
+        if($request->hasFile('image')){
+            $image = Image::make($request->file('image'))->resize(null, 400, function ($constraint) {
                 $constraint->aspectRatio();
             });
-        $imageFolder = 'posts/';
-        $imageExt = $request->file('image')->getClientOriginalExtension();
-        $imageName = Auth::id() . str_random(10) . time() . '.' .$imageExt;
-        $imagePath = $imageFolder . $imageName;
+            $imageFolder = 'posts/';
+            $imageExt = $request->file('image')->getClientOriginalExtension();
+            $imageName = Auth::id() . str_random(10) . time() . '.' .$imageExt;
+            $imagePath = $imageFolder . $imageName;
+
+            $image->save(storagePath($imagePath), 60);
+        }
         
+
         $requestData = [
             'body' => $request->body,
             'user_id' => $user->id,
             'image'  => $imagePath
         ];
-
-        $image->save(storagePath($imagePath), 60);
 
         $post = Post::create($requestData);
 
