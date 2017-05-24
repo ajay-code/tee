@@ -1,6 +1,13 @@
                 <div class="panel panel-default"> <!-- Chatlist Panel -->
-                    <div class="padding-left-10">Friends Online</div>
+                    @if ($onlineFriends->count() <= 0)
+                            <div class="padding-left-10">   
+                                No friend is Online
+                            </div>
+                    @else
+                        <div class="padding-left-10">Friends Online</div>
+                    @endif
                     <div id="chatlist" class="chatlist {{ auth()->user()->online ? '': 'opacity-2' }}"><!-- Chatlist -->
+                        
                         @foreach ($onlineFriends as $friend)
                             <div class="chatlist-item">
                                 <a href="{{ route('messages.user.show', $friend->id) }}">
@@ -12,6 +19,7 @@
                                 </a>
                             </div>
                         @endforeach
+
                         
                     </div><!-- End Of Chatlist -->
                     <div class="row padding-10"><!-- Change Status Row -->

@@ -9,12 +9,12 @@
         <div class="col-sm-8 col-md-9">
             <div class="panel panel-default">
                                 <div class="col-sm-12">
-                                    <h2 style="color:#42b350"><i class="fa fa-users"></i> FRIENDS ({{ $friends->count() }})</h2>
+                                    <h3 style="color:#42b350"><i class="fa fa-users"></i> FRIENDS ({{ $friends->count() }})</h3>
                                 </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                 @foreach ($friends as $friend)
-                                    <div class="col-md-3 col-sm-4 col-xs-6">
+                                    <div class="col-md-2 col-sm-3 col-xs-6">
                                                 <div class="flex-center flex-direction-col friend">   
                                                     <img class="block size-300x300" src="{{ $friend->avatar() }}" alt="">
                                                     <p>

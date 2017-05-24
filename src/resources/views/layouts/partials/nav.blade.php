@@ -11,7 +11,7 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand navbar-brand__image__container" href="{{ url('/') }}">
+            <a class="navbar-brand navbar-brand__image__container flex-center" href="{{ url('/') }}">
                 <img class="navbar-brand__image" src="{{ getStorageUrl('avatar/ball.png') }}" alt="">
             </a>
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -29,8 +29,27 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
                 @if (Auth::check())
+                    <li>
+                        <a href=" {{ route('messages') }} ">Messages @include('message.unread-count')</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Notifications
+                                <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            @each('layouts.partials.notification',auth()->user()->notifications, 'notification')                           
+                                
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href=" {{ route('user.find.friends') }} ">Find Friends</a>
+                    </li>
+                
+                
                     <li class="dropdown">
                         <img class="user__avatar" src="{{ Auth::user()->thumbnail() }}" alt="">
                         <a href="#" class="user__name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

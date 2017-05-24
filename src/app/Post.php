@@ -32,6 +32,18 @@ class Post extends Model implements HasLikesContract
      */
     protected $fillable = ['body', 'user_id', 'image'];
 
+    /**
+     * The attributes that should be Added for arrays.
+     *
+     * @var array
+     */
+    protected $appends = ['likedByCurrentUser'];
+
+    public function getLikedByCurrentUserAttribute()
+    {
+        return $this->liked;
+    }
+
     public function imageUrl()
     {
         return getStorageUrl($this->image);

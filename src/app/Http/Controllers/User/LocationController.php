@@ -43,10 +43,12 @@ class LocationController extends Controller
     public function addLocation()
     {
         if(auth()->user()->location()->get()->count() > 0){
-            return redirect()->route('user.location.edit');
+            return redirect()->route('user.find.friendsbylocation');;
         }
         return view('user.locations.add');
     }
+
+
 
     /**
      * Show form to Add Preferred location by the user.
@@ -67,6 +69,7 @@ class LocationController extends Controller
      */
     public function storeLocation(Request $request)
     {
+        // return $request->all();
         $this->validate($request,[
             'location' => 'required',
             'lat' => 'required',
@@ -76,7 +79,33 @@ class LocationController extends Controller
         $user = auth()->user();
         $location = $user->location()->create($request->all());
         // return $location;
-        return redirect()->route('user.locations');
+        return redirect()->route('user.find.friendsbylocation');
+    }
+
+     /**
+     * Show form to Add Preferred location by the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateLocation(Request $request)
+    {
+        // return $request->except('_token');
+        $data = [
+            'location' => 'required',
+            'lat' => 'required',
+            'lng' => 'required'
+        ];
+        $this->validate($request,[
+            'location' => 'required',
+            'lat' => 'required',
+            'lng' => 'required'
+       ]);
+        // Attach the club to the user
+        $user = auth()->user();
+        $location = $user->location->update($request->all());
+        // return $location;
+        return redirect()->route('user.find.friendsbylocation');
     }
 
 

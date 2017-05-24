@@ -46,5 +46,9 @@ window.axios.defaults.headers.common = {
 // });
 
 
-
+$.ajaxSetup({
+    headers: {
+        'X-XSRF-TOKEN': window.Laravel.csrfToken
+    }
+});
 require('sweetalert');

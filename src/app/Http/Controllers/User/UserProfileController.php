@@ -30,6 +30,17 @@ class UserProfileController extends Controller
         return view('user.profile', compact('user'));
     }
 
+    /**
+     * Display a listing of user profile.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function information()
+    {
+        $user = Auth::user();
+        return view('user.profileInfo', compact('user'));
+    }
+
 
     /**
      * Show the form for editing the user profile.

@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use File;
 use Auth;
+use File;
 use Image;
 use Session;
 use App\Post;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Notifications\PostLiked;
 use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
@@ -24,8 +25,17 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-        $perPage = 15;
+        return view('posts.index');
+    }
+
+    /**
+     * Display a listing of the Posts.
+     *
+     * @return App\Posts
+     */
+    public function posts(Request $request)
+    {
+        $perPage = 10;
         $users = auth()->user()->getFriends()->pluck('id');
         $users[] = auth()->user()->id; 
 
@@ -39,9 +49,28 @@ class PostsController extends Controller
         } else {
             $posts = Post::WhereIn('user_id', $users)->with('likesCounter', 'user', 'comments.creator')->latest()->paginate($perPage);
         }
-        // dd($posts);
-        return view('posts.index', compact('posts'));
+        return $posts;
     }
+
+    public function usersposts()
+    {
+        $perPage = 10;
+        $users = [];
+        $users[] = auth()->user()->id; 
+
+        if (!empty($keyword)) {
+            $posts = Post::WhereIn('user_id', $users)
+                ->where('body', 'LIKE', "%$keyword%")
+                ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->with('likesCounter', 'user')
+                ->latest()
+                ->paginate($perPage);
+        } else {
+            $posts = Post::WhereIn('user_id', $users)->with('likesCounter', 'user', 'comments.creator')->latest()->paginate($perPage);
+        }
+        return $posts;   
+    }
+
 
     /**
      * Show the form for creating a new Post.
@@ -85,7 +114,7 @@ class PostsController extends Controller
 
         $post = Post::create($requestData);
 
-        return redirect('/posts');
+        return $post->load('likesCounter', 'user', 'comments.creator');
     }
 
     /**
@@ -159,14 +188,18 @@ class PostsController extends Controller
 
         Post::destroy($id);
 
-        Session::flash('flash_message', 'Post deleted!');
-
         return redirect('posts');
     }
 
     public function likePost(Post $post)
     {
+
         $post->like();
+        
+        /*Notify the user to whome the post belong to */
+        $notifiableUser = $post->user;
+        $notifiableUser->notify(new PostLiked(auth()->user(), $post));
+
         return back();
     }
     public function unlikePost(Post $post)

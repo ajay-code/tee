@@ -19,6 +19,8 @@
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
+        window.storageUrl = '{{ getStorageUrl() }}';
+
     </script>
 </head>
 <body>

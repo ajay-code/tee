@@ -23,6 +23,7 @@ return array(
     'CreateLikeTable' => $baseDir . '/database/migrations/2016_09_02_153301_create_like_table.php',
     'CreateLocationsTable' => $baseDir . '/database/migrations/2017_04_01_032733_create_locations_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2014_10_28_175710_create_messages_table.php',
+    'CreateNotificationsTable' => $baseDir . '/database/migrations/2017_05_22_120548_create_notifications_table.php',
     'CreateParticipantsTable' => $baseDir . '/database/migrations/2014_10_28_180224_create_participants_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePlacesTable' => $baseDir . '/database/migrations/2017_04_05_064138_create_places_table.php',

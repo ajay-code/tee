@@ -18,9 +18,14 @@ require('./bootstrap');
 // Vue.config.silent = true;
 
 Vue.component('chat', require('./components/messanger/chat.vue'));
-Vue.component('message-left', require('./components/messanger/messageLeft.vue'));
-Vue.component('message-right', require('./components/messanger/messageRight.vue'));
 Vue.component('message-form', require('./components/messanger/form.vue'));
+Vue.component('posts', require('./components/posts/Posts.vue'));
+Vue.component('post-form', require('./components/posts/Form.vue'));
+Vue.component('post', require('./components/posts/Post.vue'));
+Vue.component('comments', require('./components/comments/Comments.vue'));
+Vue.component('comment', require('./components/comments/Comment.vue'));
+Vue.component('comment-form', require('./components/comments/Form.vue'));
+
 
 const app = new Vue({
     el: '#app'

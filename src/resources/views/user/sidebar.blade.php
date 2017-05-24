@@ -5,10 +5,18 @@
 			 <img id="avatar" class="profile-thumbnail padding-10" src="{{ Auth::user()->avatar() }}" class="profile__image" alt="profile Image">
 		</div>
 		<div class="friend-name">
-			<h3>{{ Auth::user()->username ? Auth::user()->username : Auth::user()->firstname }}</h3>
+			<h3>
+				<a href="{{ route('user.profile') }}">
+					{{ Auth::user()->username ? Auth::user()->username : Auth::user()->firstname }}
+				</a>
+			</h3>
 		</div>	
 	</div>
 </div>
+
+{{ $uploadimage }}
+
+
 <div class="panel panel-default padding-top-10">
 	<div class="panel-body">
 		<div class="menu-bar-style ">
@@ -98,6 +106,23 @@
 
 				<div class="list-item"><!-- list item -->
 					<div class="col-xs-2">
+						<a href="{{ route('user.find.friendsbylocation') }}">
+							<span class="list-icon">
+								<i class="fa fa-users "></i>
+							</span>
+						</a>
+					</div>
+					<div class="col-xs-10">
+						<a href="{{ route('user.find.friendsbylocation') }}">
+							<span class="list-text">People Nearby</span>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+				</div><!--End list item -->
+
+
+				<div class="list-item"><!-- list item -->
+					<div class="col-xs-2">
 						<a href="{{ route('user.profile') }}">
 							<span class="list-icon">
 								<i class="fa fa-pencil "></i>
@@ -105,7 +130,7 @@
 						</a>
 					</div>
 					<div class="col-xs-10">
-						<a href="{{ route('user.profile') }}">
+						<a href="{{ route('user.profileinfo') }}">
 							<span class="list-text">Edit Profile</span>
 						</a>
 					</div>

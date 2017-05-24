@@ -3,6 +3,7 @@ require('./maps.chooseClub');
 require('./maps.allUserClubs');
 require('./maps.allClubs');
 require('./maps.allUserLocations');
+require('./maps.addUserLocation');
 require('./maps.allUserPlaces');
 require('./maps.changeLocation');
 require('./maps.findFriendsByLocation');

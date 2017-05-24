@@ -4,11 +4,16 @@
     <div class="container" id="wall">
          <div class="row">
             <div class="col-md-3">
-                @include('user.sidebar')
+                @component('user.sidebar')
+                    @slot('uploadimage')
+                        
+                    @endslot
+                @endcomponent
             </div><!-- End Of col 3 -->
         
             <div class="col-md-6">
-                    @include('posts.posts')
+                    <posts></posts>   
+                    {{-- <post ></post>   --}}
             </div> <!-- End Of col 7 -->
             <div class="col-md-3 fix-chatlist">
                 @include('posts.partials.chatlist')

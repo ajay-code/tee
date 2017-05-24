@@ -1,5 +1,5 @@
 <?php
-Route::get('/location', 'User\LocationController@locations')->name('user.locations');
+Route::get('/locations', 'User\LocationController@locations')->name('user.locations');
 
 Route::get('/locations/add', 'User\LocationController@addLocation')->name('user.location.add');
 Route::post('/locations/add', 'User\LocationController@storeLocation')->name('user.location.store');

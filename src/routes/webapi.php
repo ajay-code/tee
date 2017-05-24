@@ -5,3 +5,9 @@ Route::get('/user/locations', 'User\LocationController@locationsAll')->name('use
 Route::get('/user/places', 'User\PlaceController@placesAll')->name('user.places.all')->middleware('auth');
 
 
+Route::group([],function () {
+	Route::get('/posts', 'User\PostsController@posts')->name('posts');
+	Route::get('/profile', 'User\PostsController@usersposts')->name('posts');
+
+});
+

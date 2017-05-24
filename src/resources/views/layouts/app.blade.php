@@ -17,6 +17,10 @@
     window.Laravel = {!!json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
+    window.storageUrl = '{{ getStorageUrl() }}';
+    window.user = {!!json_encode(auth()->user()) !!};
+    
+
     </script>
 </head>
 
@@ -26,7 +30,9 @@
         @yield('content')
     </div>
     @include('layouts.partials.footer') 
+
     @yield('scripts')
+    
 </body>
 
 </html>

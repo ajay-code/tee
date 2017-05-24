@@ -7,6 +7,7 @@ use App\User;
 use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\FriendRequestAccepted;
 
 class FriendController extends Controller
 {
@@ -38,6 +39,11 @@ class FriendController extends Controller
     	$user = auth()->user();
     	$sender = User::find($sender);
     	$user->acceptFriendRequest($sender);
+        
+        /*Notify the user to who send the friend request*/
+        $notifiableUser = $showFriendRequests;
+        $notifiableUser->notify(new FriendRequestAccepted(auth()->user()));
+
     	return back();
     }
 
@@ -65,10 +71,14 @@ class FriendController extends Controller
     /**
     *   Return view of all Users
     */
-    public function findFriendsUsingLocstion()
+    public function findFriendsUsingLocation()
     {
         $CurrentUser = auth()->user();
-        $except = $CurrentUser->getFriends()->pluck('id')->toArray();
+        if(!$CurrentUser->location){
+            alert()->info('Please enter your location to use people nearby');
+            return redirect()->route('user.location.add');
+        }
+        $except = [];
         $except[] = $CurrentUser->id;
         $center = $CurrentUser->location;
         $radius = 1000;
@@ -90,15 +100,15 @@ class FriendController extends Controller
             ->with('user')
             ->take(20)
             ->setBindings([$center->lat, $center->lng, $center->lat,  $radius])
-            ->get();
-            // ->except($center->id);
+            ->get()
+            ->except($center->id);
 
         // Reject the current user and his friends from the list
         $locations = $locations->reject(function($location) use($except){
-            // return in_array($location->user->id, $except);
+            return in_array($location->user->id, $except);
         });
         // return $locations;
-        return view('user.findfriendsbylocation', compact('locations', 'except'));
+        return view('user.findfriendsbylocation', compact('locations', 'except', 'radius'));
     }
 
     /**

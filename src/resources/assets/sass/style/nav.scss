@@ -7,40 +7,63 @@
 }
 
 .navbar-brand__image__container{
-    padding-top: 1px;
-    padding-bottom: 1px;
 }
 .navbar-brand__image {
-    height  : 100%;
+    height  : 40px;
 }
-
+.navbar-default .navbar-brand:hover, 
+.navbar-default .navbar-brand:focus {
+    color: #fff;
+    background-color: lighten($brand-background, 10%);
+}
 .navbar-brand__name {
 }
 
 .navbar-default .navbar-brand {
-    font-size   : 38px;
+    font-size   : 30px;
     font-family : Sansita;
     color       : $brand-color;
-    // padding-left: 30px;
 }
 
 .user__avatar {
-    width   : 40px;
+    width   : 30px;
     position: absolute;
-    top     : 5px;
-    left    : 0;
+    top     : 10px;
+    left    : 15px;
+    z-index: 10;
 }
 
 .user__name {
-    margin-left: 42px;
+    margin-left: 35px;
 }
 
 .navbar-default .navbar-nav > li > a {
     color    : white;
-    font-size: 20px;
+    font-size: 16px;
 }
 
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus {
+    color    : white;
+    font-size: 16px;
+    background-color: lighten($brand-background, 10%);
+}
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: lighten($brand-background, 10%);
-    color: #555;
+    color: #fff;
+}
+
+.navbar {
+  border: 1px solid transparent;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-image{
+    width: 15px;
+    margin: 0 5px;
 }

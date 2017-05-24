@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use App\Notifications\Commented;
 
 class CommentController extends Controller
 {
@@ -40,7 +41,11 @@ class CommentController extends Controller
 		    'body' => $request->comment,
 		], $user);
 
-		return back();
+        /*Notify the user to whome the post belong to */
+        $notifiableUser = $post->user;
+        $notifiableUser->notify(new Commented($user, $post));
+
+		return $comment->load('creator');
 
     }
 

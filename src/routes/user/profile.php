@@ -1,5 +1,6 @@
 <?php
 Route::get('/profile', 'User\UserProfileController@index')->name('user.profile');
+Route::get('/profile/info', 'User\UserProfileController@information')->name('user.profileinfo');
 Route::get('/profile/edit', 'User\UserProfileController@edit')->name('user.editprofile');
 Route::post('/profile/edit', 'User\UserProfileController@update')->name('user.updateprofile');
 Route::post('/profile/photo', 'User\UserProfileController@updateAvatar')->name('user.updateavatar');

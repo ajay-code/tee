@@ -1,13 +1,17 @@
 @extends('layouts.app') @section('content')
 <div class="container">
     <div class="row profile">
+        <div class="col-sm-12" >  
+            <a href="{{ route('user.location.edit') }}"><button class="btn btn-primary">Update your location</button></a>
+        </div>
+        <br>
         <div class="col-sm-12 {{-- col-md-9 --}}">
             <div id="map"></div>
             <div class="panel panel-default">
                 <div class="profile__detail">
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1">
-                            <h4>Users</h4>
+                            <h4>Users within {{ $radius }}km</h4>
                             <div class="table-responsive">
                                 <table class="table table-responsive table-user-information">
                                     <tbody>
