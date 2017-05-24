@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div id="sidebar" class="plain">
 <div class="panel panel-default padding-top-10">
 	<div class="panel-body">
 		<div class="user-image-friend">
@@ -20,7 +20,7 @@
 <div class="panel panel-default padding-top-10">
 	<div class="panel-body">
 		<div class="menu-bar-style ">
-			<div class="list" >
+			<div class="list " >
 				<div class="list-item"><!-- list item -->
 					<div class="col-xs-2">
 						<a href="{{ route('home') }}">
@@ -81,7 +81,9 @@
 					<div class="col-xs-10">
 						<a href="{{ route('user.friendrequest') }}">
 							<span class="list-text">Request</span>
-							<span class="label label-danger">{{ auth()->user()->getFriendRequests()->count() }}</span>
+							@if (auth()->user()->getFriendRequests()->count() > 0)
+								<span class="label label-danger">{{ auth()->user()->getFriendRequests()->count() }}</span>
+							@endif
 						</a>
 					</div>
 					<div class="clearfix"></div>
@@ -98,7 +100,9 @@
 					<div class="col-xs-10">
 						<a href="{{ route('user.friends') }}">
 							<span class="list-text">Friends</span>
-							<span class="label label-danger">{{ auth()->user()->getFriends()->count() }}</span>
+							@if (auth()->user()->getFriends()->count() > 0)
+								<span class="label label-danger">{{ auth()->user()->getFriends()->count() }}</span>
+							@endif
 						</a>
 					</div>
 					<div class="clearfix"></div>
