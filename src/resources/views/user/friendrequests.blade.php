@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row profile">
         <div class="col-sm-4 col-md-3">
-            @include('user.sidebar')
+            @component('user.sidebar')
+                    @slot('uploadimage')
+                    @endslot
+            @endcomponent
         </div>
         <div class="col-sm-8 col-md-9">
             <div class="panel panel-default">
