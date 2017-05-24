@@ -102,11 +102,14 @@ class FriendController extends Controller
             ->setBindings([$center->lat, $center->lng, $center->lat,  $radius])
             ->get()
             ->except($center->id);
-
-        // Reject the current user and his friends from the list
-        $locations = $locations->reject(function($location) use($except){
-            return in_array($location->user->id, $except);
-        });
+        
+        if($locations){
+            // Reject the current user and his friends from the list
+            $locations = $locations->reject(function($location) use($except){
+                return in_array($location->user->id, $except);
+            });    
+        }
+        
         // return $locations;
         return view('user.findfriendsbylocation', compact('locations', 'except', 'radius'));
     }
