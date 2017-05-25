@@ -29676,6 +29676,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -29691,7 +29696,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 last_page: 0,
                 next_page_url: null,
                 prev_page_url: null
-            }
+            },
+            busy: true
         };
     },
 
@@ -29699,6 +29705,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getPosts();
         __WEBPACK_IMPORTED_MODULE_2__event___default.a.$on('posted', this.addNewPost);
+        window.onscroll = function () {
+            var y = window.pageYOffset + window.innerHeight;
+            var app = document.getElementById('app').offsetHeight;
+            if (y >= app && !this.busy && this.paginator.next_page_url) {
+                this.busy = true;
+                this.loadMore();
+            }
+        }.bind(this);
     },
 
 
@@ -29720,20 +29734,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.paginator.last_page = res.data.last_page;
                 _this.paginator.next_page_url = res.data.next_page_url;
                 _this.paginator.prev_page_url = res.data.prev_page_url;
+
+                /*Set busy to false*/
+                _this.busy = false;
             });
         },
         loadMore: function loadMore() {
             var _this2 = this;
 
-            axios.get(this.paginator.next_page_url).then(function (res) {
-                _this2.posts.push(res.data.data);
+            if (this.paginator.next_page_url) {
+                this.busy = true;
+                axios.get(this.paginator.next_page_url).then(function (res) {
+                    var posts = res.data.data;
+                    _.each(posts, function (post) {
+                        _this2.posts.push(post);
+                    });
 
-                _this2.paginator.total = res.data.total;
-                _this2.paginator.current_page = res.data.current_page;
-                _this2.paginator.last_page = res.data.last_page;
-                _this2.paginator.next_page_url = res.data.next_page_url;
-                _this2.paginator.prev_page_url = res.data.prev_page_url;
-            });
+                    _this2.paginator.total = res.data.total;
+                    _this2.paginator.current_page = res.data.current_page;
+                    _this2.paginator.last_page = res.data.last_page;
+                    _this2.paginator.next_page_url = res.data.next_page_url;
+                    _this2.paginator.prev_page_url = res.data.prev_page_url;
+
+                    /*Set busy to false*/
+                    _this2.busy = false;
+                });
+            }
         },
         addNewPost: function addNewPost(post) {
             this.posts.unshift(post);
@@ -55367,7 +55393,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "post": post
       }
     })
-  }))])])
+  })), _vm._v(" "), (_vm.busy) ? _c('div', {
+    staticClass: "text-center padding-bottom-10"
+  }, [_c('i', {
+    staticClass: "fa fa-spinner fa-pulse fa-3x fa-fw"
+  }), _vm._v(" "), _c('span', {
+    staticClass: "sr-only"
+  }, [_vm._v("Loading...")])]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
