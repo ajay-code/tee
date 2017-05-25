@@ -3,10 +3,24 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-sm-4 col-md-3">
+            @component('user.sidebar')
+                    @slot('uploadimage')
+                        <div class="panel panel-default padding-top-10">
+                            <div class="panel-body">
+                                <button id="upload-pic-button" class="btn btn-block btn-success" data-toggle="modal" data-target="#upload-pic">Change Profile Picture</button>
+                            </div>
+                        </div>
+                    @endslot
+            @endcomponent
+        </div>
+        <div class="col-sm-8 col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">{{ trans('form.edit_profile') }}</div>
                 <div class="panel-body">
+                    <a href="{{ route('user.profileinfo') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <br>
+                    <br>
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('user.updateprofile') }}">
                         {{ csrf_field() }}
                                 <div class="col-md-5 col-md-offset-1">
@@ -156,7 +170,7 @@
                             <div class="form-group ">
                                 <div class="col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary  btn-block">
-                                        Submit
+                                        Update
                                     </button>
                                 </div>
                             </div>

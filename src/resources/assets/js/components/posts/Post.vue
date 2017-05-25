@@ -59,6 +59,7 @@
         data(){
             return {
                 comments: [],
+                likeCounter: null
             }        
         },
         
@@ -66,6 +67,12 @@
 
         mounted(){
             this.comments = this.post.comments;
+            
+            if(this.post.likes_counter){
+                    this.likeCounter = this.post.likes_counter.count
+            }else{
+                    this.likeCounter = 0;
+            }
         },
         computed: {
             commentCount(){
@@ -86,12 +93,6 @@
                 }
                 return '';
             },
-            likeCounter(){
-                if(this.post.likes_counter){
-                    return this.post.likes_counter.count
-                }
-                return 0;
-            },
 
             pluralizeComments(){
                 return pluralize('Comment', this.commentCount );
@@ -105,7 +106,7 @@
             },
             like(){
                 this.post.likedByCurrentUser = true;
-                this.post.likes_counter.count += 1; 
+                this.likeCounter += 1; 
                 axios.get('/posts/'+ this.post.id + '/like').then( res => {
                 }).catch(function (error) {
                     console.log(error);
@@ -115,7 +116,7 @@
             },
             unlike(){
                 this.post.likedByCurrentUser = false;
-                this.post.likes_counter.count -= 1;
+                this.likeCounter -= 1;
                 axios.get('/posts/'+ this.post.id + '/unlike').then( res => {
                 })
                 .catch(function (error) {

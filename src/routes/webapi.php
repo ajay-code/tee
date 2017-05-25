@@ -6,8 +6,8 @@ Route::get('/user/places', 'User\PlaceController@placesAll')->name('user.places.
 
 
 Route::group([],function () {
-	Route::get('/posts', 'User\PostsController@posts')->name('posts');
-	Route::get('/profile', 'User\PostsController@usersposts')->name('posts');
-
+	Route::get('/posts', 'User\PostsController@posts')->name('api.posts');
+	Route::get('/profile', 'User\PostsController@usersPosts')->name('api.user.posts');
+	Route::get('/users/{user}/posts', 'User\PostsController@usersPosts')->name('api.other.user.posts');
 });
 

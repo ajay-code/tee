@@ -11,4 +11,4 @@ Route::get('/friends/find', 'FriendController@findFriends')->name('user.find.fri
 Route::get('/friends/find/location', 'FriendController@findFriendsUsingLocation')->name('user.find.friendsbylocation');
 
 /*Find Friends Using PLace*/
-// Route::get('/friends/find', 'FriendController@findFriends')->name('user.find.friends');
+

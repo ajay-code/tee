@@ -20,6 +20,7 @@ require('./bootstrap');
 Vue.component('chat', require('./components/messanger/chat.vue'));
 Vue.component('message-form', require('./components/messanger/form.vue'));
 Vue.component('posts', require('./components/posts/Posts.vue'));
+Vue.component('posts-url', require('./components/posts/PostsUrl.vue'));
 Vue.component('post-form', require('./components/posts/Form.vue'));
 Vue.component('post', require('./components/posts/Post.vue'));
 Vue.component('comments', require('./components/comments/Comments.vue'));

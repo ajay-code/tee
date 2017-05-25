@@ -134,7 +134,7 @@
                                     {{ $user->lang ? $user->lang: '---' }}
                                 </td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td>
                                     <strong>
                                         <span class="fa fa-language text-primary"></span>
@@ -170,7 +170,7 @@
                                 <td>
                                     <a href="{{ url('posts') }}">Add Posts</a>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
 

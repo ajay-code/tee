@@ -32,6 +32,9 @@ class UserObserver
         }else{
             $user->name = $user->firstname;
         }
+
+        /*Create Default Settings*/
+        $user->settings()->create([]);
            
 
         $user->save();

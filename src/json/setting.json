@@ -1,0 +1,41 @@
+{
+    "fields": [
+        {
+            "name": "can_view_posts",
+            "type": "select",
+            "options": ["friends", "everyone"]
+        },
+        {
+            "name": "can_view_friends",
+            "type": "select",
+            "options": ["friends", "everyone"]
+        },
+        {
+            "name": "can_send_request",
+            "type": "select",
+            "options": ["nobody", "everyone"]
+        },
+        {
+            "name": "can_send_message",
+            "type": "select",
+            "options": ["friends", "everyone"]
+        }
+        
+    ],
+    "foreign_keys": [
+        {
+            "column": "user_id",
+            "references": "id",
+            "on": "users",
+            "onDelete": "cascade"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\User"
+        }
+    ]
+    
+}

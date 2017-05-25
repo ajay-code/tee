@@ -21,6 +21,7 @@ class FriendController extends Controller
         // user needs to be logged in to use these functionalities
         $this->middleware('auth');
     }
+    
     /**
     *	Return view of all friend request
     */
@@ -30,6 +31,8 @@ class FriendController extends Controller
     	$friendRequests = $user->getFriendRequests()->load('sender');
     	return view('user.friendrequests', compact('friendRequests', 'user'));
     }
+
+   
 
     /**
     *	Accept Friend Request From sender
@@ -54,6 +57,25 @@ class FriendController extends Controller
     {
     	$friends = auth()->user()->getFriends();
     	return view('user.friends', compact('friends'));
+    }
+
+    /**
+    *   Return view of all friend request
+    */
+    public function usersFriends(User $user)
+    {
+
+        if($user->settings->can_view_friends == 'everyone'){
+            $friends = $user->getFriends();
+        }elseif($user->settings->can_view_friends == 'friends'){
+            if($user->isFriendWith(auth()->user())){
+                $friends = $user->getFriends();
+            }
+        }
+        if(!isset($friends)){
+            return redirect()->route('other.user.profile', ['user' => $user->id]);
+        }
+        return view('other.user.friends', compact('friends', 'user'));
     }
 
     /**

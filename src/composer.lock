@@ -2910,16 +2910,16 @@
     "packages-dev": [
         {
             "name": "appzcoder/crud-generator",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "77c45c74fc4c52901d7fccc71b41100b14e8bde8"
+                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/77c45c74fc4c52901d7fccc71b41100b14e8bde8",
-                "reference": "77c45c74fc4c52901d7fccc71b41100b14e8bde8",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/a03475989f076a8a5e9627c4eb4dc1245511f753",
+                "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753",
                 "shasum": ""
             },
             "require": {
@@ -2958,7 +2958,7 @@
                 "laravel",
                 "laravel crud generator"
             ],
-            "time": "2017-05-02T16:32:05+00:00"
+            "time": "2017-05-09T19:23:21+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -3156,12 +3156,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },

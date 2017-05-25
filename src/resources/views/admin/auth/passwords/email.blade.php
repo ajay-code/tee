@@ -1,4 +1,4 @@
-@extends('admin.layout.auth')
+@extends('admin.layouts.auth')
 
 <!-- Main Content -->
 @section('content')

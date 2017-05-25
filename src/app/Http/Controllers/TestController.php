@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class TestController extends Controller
 {
     public function index()
     {
-        return  User::all();
+        return  Post::with('likesCounter')->get();
                       
     }
 }

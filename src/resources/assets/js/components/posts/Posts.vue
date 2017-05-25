@@ -1,9 +1,9 @@
 <template>
     <div class="row">
         <div class="col-xs-12"> 
-            <div class="panel panel-default">
+            <div class="panel panel-default" >
                 <div class="panel-body">
-                    <post-form></post-form>   
+                    <post-form ></post-form>   
                 </div> <!-- End Of body -->
             </div> <!-- End Of panel -->
             
@@ -53,14 +53,13 @@
             }.bind(this)
         },
 
+        computed: {
+        },
+
         methods: {
             getPosts(){
-                let uri;
-                if(this.url){
-                    uri = this.url; 
-                }else{
-                    uri = 'api/posts';
-                }
+                let uri = 'api/posts';
+                
                 axios.get(uri).then( res => {
                     this.posts = res.data.data;
                     

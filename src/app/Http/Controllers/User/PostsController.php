@@ -52,7 +52,7 @@ class PostsController extends Controller
         return $posts;
     }
 
-    public function usersposts()
+    public function usersPosts()
     {
         $perPage = 10;
         $users = [];
@@ -70,6 +70,27 @@ class PostsController extends Controller
         }
         return $posts;   
     }
+
+    public function specifiedUsersPosts(User $user)
+    {
+        $perPage = 10;
+        $users = [];
+        $users[] = $user->id; 
+
+        if (!empty($keyword)) {
+            $posts = Post::WhereIn('user_id', $users)
+                ->where('body', 'LIKE', "%$keyword%")
+                ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->with('likesCounter', 'user')
+                ->latest()
+                ->paginate($perPage);
+        } else {
+            $posts = Post::WhereIn('user_id', $users)->with('likesCounter', 'user', 'comments.creator')->latest()->paginate($perPage);
+        }
+        return $posts;   
+    }
+
+
 
 
     /**

@@ -54,21 +54,7 @@
 					<div class="clearfix"></div>
 				</div><!--End list item -->
 
-				<div class="list-item"><!-- list item -->
-					<div class="col-xs-2">
-						<a href="{{ route('messages.chats') }}">
-							<span class="list-icon">
-								<i class="fa fa-envelope-open "></i>
-							</span>
-						</a>
-					</div>
-					<div class="col-xs-10">
-						<a href="{{ route('messages.chats') }}">
-							<span class="list-text">Chats</span>
-						</a>
-					</div>
-					<div class="clearfix"></div>
-				</div><!--End list item -->
+				
 
 				<div class="list-item"><!-- list item -->
 					<div class="col-xs-2">
@@ -112,7 +98,7 @@
 					<div class="col-xs-2">
 						<a href="{{ route('user.find.friendsbylocation') }}">
 							<span class="list-icon">
-								<i class="fa fa-users "></i>
+								<i class="fa fa-map-marker "></i>
 							</span>
 						</a>
 					</div>
@@ -124,18 +110,34 @@
 					<div class="clearfix"></div>
 				</div><!--End list item -->
 
+				<div class="list-item"><!-- list item -->
+					<div class="col-xs-2">
+						<a href="{{ route('settings') }}">
+							<span class="list-icon">
+								<i class="fa fa-gears "></i>
+							</span>
+						</a>
+					</div>
+					<div class="col-xs-10">
+						<a href="{{ route('settings') }}">
+							<span class="list-text">Settings</span>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+				</div><!--End list item -->
+
 
 				<div class="list-item"><!-- list item -->
 					<div class="col-xs-2">
 						<a href="{{ route('user.profile') }}">
 							<span class="list-icon">
-								<i class="fa fa-pencil "></i>
+								<i class="fa fa-info "></i>
 							</span>
 						</a>
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('user.profileinfo') }}">
-							<span class="list-text">Edit Profile</span>
+							<span class="list-text">Profile Info</span>
 						</a>
 					</div>
 					<div class="clearfix"></div>

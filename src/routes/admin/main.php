@@ -1,17 +1,13 @@
 <?php
+Route::get('/', 'Admin\MainController@index')->name('index');
+Route::get('/home', 'Admin\MainController@index')->name('home');
 
-Route::get('/home', function () {
-    $users[] = Auth::user();
-    $users[] = Auth::guard()->user();
-    $users[] = Auth::guard('admin')->user();
 
-    return view('admin.home');
-})->name('home');
 
-Route::get('/', function () {
-    $users[] = Auth::user();
-    $users[] = Auth::guard()->user();
-    $users[] = Auth::guard('admin')->user();
+Route::group(['prefix' => 'api'], function () {
+	Route::get('/users/{user}', 'Admin\UserController@getUser')->name('index');
+	Route::get('/users/{user}/avtivate', 'Admin\UserController@activate')->name('user.activate');
+	Route::get('/users/{user}/deavtivate', 'Admin\UserController@deactivate')->name('user.deactivate');
+});
 
-    return view('admin.home');
-})->name('index');
+Route::get('/users', 'Admin\UserController@index')->name('index');

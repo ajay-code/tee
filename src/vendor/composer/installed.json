@@ -4472,60 +4472,6 @@
         ]
     },
     {
-        "name": "appzcoder/crud-generator",
-        "version": "v2.0.3",
-        "version_normalized": "2.0.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/appzcoder/crud-generator.git",
-            "reference": "77c45c74fc4c52901d7fccc71b41100b14e8bde8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/77c45c74fc4c52901d7fccc71b41100b14e8bde8",
-            "reference": "77c45c74fc4c52901d7fccc71b41100b14e8bde8",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "^5.1",
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "mockery/mockery": "^0.9.6",
-            "orchestra/testbench": "^3.3",
-            "phpunit/phpunit": "^5.7"
-        },
-        "time": "2017-05-02T16:32:05+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Appzcoder\\CrudGenerator\\": "src/"
-            },
-            "classmap": [
-                "tests"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Sohel Amin",
-                "email": "sohelamincse@gmail.com",
-                "homepage": "http://www.appzcoder.com"
-            }
-        ],
-        "description": "Laravel 5 CRUD Generator",
-        "keywords": [
-            "crud",
-            "crud generator",
-            "laravel",
-            "laravel crud generator"
-        ]
-    },
-    {
         "name": "myclabs/deep-copy",
         "version": "1.6.1",
         "version_normalized": "1.6.1.0",
@@ -4625,5 +4571,59 @@
         ],
         "description": "Symfony Yaml Component",
         "homepage": "https://symfony.com"
+    },
+    {
+        "name": "appzcoder/crud-generator",
+        "version": "v2.0.4",
+        "version_normalized": "2.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/appzcoder/crud-generator.git",
+            "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/a03475989f076a8a5e9627c4eb4dc1245511f753",
+            "reference": "a03475989f076a8a5e9627c4eb4dc1245511f753",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "^5.1",
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.6",
+            "orchestra/testbench": "^3.3",
+            "phpunit/phpunit": "^5.7"
+        },
+        "time": "2017-05-09T19:23:21+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Appzcoder\\CrudGenerator\\": "src/"
+            },
+            "classmap": [
+                "tests"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Sohel Amin",
+                "email": "sohelamincse@gmail.com",
+                "homepage": "http://www.appzcoder.com"
+            }
+        ],
+        "description": "Laravel 5 CRUD Generator",
+        "keywords": [
+            "crud",
+            "crud generator",
+            "laravel",
+            "laravel crud generator"
+        ]
     }
 ]

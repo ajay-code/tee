@@ -8,7 +8,7 @@
             </div>
         
             <div class="col-md-9">
-                 @include('posts.posts')   
+                 <posts-url :url="'/api/users/{{ $user->id }}/posts/'"></posts-url>   
             </div> <!-- End Of col -->
         </div> <!-- End Of Row -->
     </div>

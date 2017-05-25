@@ -91,6 +91,11 @@ class User extends Authenticatable
         return getStorageUrl('avatar/'. 'tn-' .$this->avatar);
     }
 
+    public function cs()
+    {
+        $this->settings()->firstOrCreate([]);
+    }
+
 
 
     /*** RelationShips ***/
@@ -115,5 +120,9 @@ class User extends Authenticatable
     public function places()
     {
         return $this->hasMany(Place::class);
+    }
+    public function settings()
+    {
+        return $this->hasOne(Setting::class);
     }
 }
