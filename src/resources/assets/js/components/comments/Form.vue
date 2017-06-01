@@ -38,7 +38,7 @@
         },
         methods: {
         	comment(){
-                this.form.post('posts/'+ this.postId +'/comments').then(
+                this.form.post('/posts/'+ this.postId +'/comments').then(
                     res => {
                         eventHub.$emit('commented-'+ this.postId, res);
                         this.form.reset();

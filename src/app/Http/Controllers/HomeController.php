@@ -32,4 +32,9 @@ class HomeController extends Controller
     {
         return view('layouts.partials.chatlistitems', compact('onlineFriends'));
     }
+
+    public function markNotificationRead()
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+    }
 }

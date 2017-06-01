@@ -50,6 +50,7 @@
                 }).then(res => {
                     eventHub.$emit('posted', res.data);
                     console.log(res);
+                    $('#preview').addClass('hide');
                     this.form.reset();
                 })
                 

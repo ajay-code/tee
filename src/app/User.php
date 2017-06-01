@@ -52,7 +52,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','firstname', 'lastname', 'sex', 'phone_number', 'dob', 'handicap', 'verified', 'lang','terms_accepted', 'online', 'last_activity'
+        'username', 'email', 'password','firstname', 'lastname', 'sex', 'phone_number', 'dob', 'handicap', 'verified', 'lang','terms_accepted', 'online', 'last_activity', 'loggedin', 'activated'
     ];
 
     /**
@@ -78,7 +78,7 @@ class User extends Authenticatable
 
     public function getStatusOnlineAttribute()
     {
-        return  is_null($this->last_activity) ? false :($this->last_activity->diffInMinutes(Carbon::now()) < 3 && $this->online) ;
+        return  is_null($this->last_activity) ? false :($this->last_activity->diffInMinutes(Carbon::now()) < 3 && $this->online && $this->loggedin)  ;
     }
 
     public function avatar()

@@ -32,6 +32,13 @@
     @include('layouts.partials.footer') 
 
     @yield('scripts')
+    <script>
+        $(function(){
+            $('#notification').on('click', function(){
+                axios.get('/notification/mark/read')
+            })
+        })
+    </script>
     
 </body>
 

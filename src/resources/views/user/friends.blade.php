@@ -17,6 +17,9 @@
                                 </div>
                             <div class="row">
                                 <div class="col-sm-12">
+                                @if ($friends->count() <= 0)
+                                    No Friends
+                                @endif
                                 @foreach ($friends as $friend)
                                     <div class="col-md-2 col-sm-3 col-xs-6">
                                                 <div class="flex-center flex-direction-col friend">   

@@ -201,10 +201,10 @@
                             {{ trans('form.facebook_signup') }}
                         </a>
 
-                        <a class="btn btn-block btn-social btn-twitter" href="{{url('/login/twitter')}}">
+                        {{-- <a class="btn btn-block btn-social btn-twitter" href="{{url('/login/twitter')}}">
                             <span class="fa fa-twitter"></span>
                             {{ trans('form.twitter_signup') }}
-                        </a>
+                        </a> --}}
                         </div>
 <div class="crearfix"></div>
 

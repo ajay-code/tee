@@ -2,20 +2,36 @@
 
 namespace App\Listeners;
 
+use Auth;
+use Alert;
+
 class UserEventSubscriber
 {
     /**
      * Handle user login events.
      */
     public function onUserLogin($event) {
-        // $event->user->update(['loggedin' => true]);
+        if($event->user){
+
+
+        // if(!$event->user->activated){
+        //     Alert::info('your account is deactivated by the Admin. Please Contact teemates@info.com');
+        //     Auth::logout();
+        //     return view('auth.login');
+        //     // dd('ds');
+        // }else{
+            $event->user->update(['loggedin' => true]);
+        // }
+        }
     }
 
     /**
      * Handle user logout events.
      */
     public function onUserLogout($event) {
-        // $event->user->update(['loggedin' => false]);
+        if($event->user){
+            $event->user->update(['loggedin' => false]);
+        }
     }
 
     /**

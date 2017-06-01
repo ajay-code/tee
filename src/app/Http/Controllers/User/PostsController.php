@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Auth;
+use User;
 use File;
 use Image;
 use Session;
@@ -35,6 +36,7 @@ class PostsController extends Controller
      */
     public function posts(Request $request)
     {
+        
         $perPage = 10;
         $users = auth()->user()->getFriends()->pluck('id');
         $users[] = auth()->user()->id; 
@@ -71,11 +73,12 @@ class PostsController extends Controller
         return $posts;   
     }
 
-    public function specifiedUsersPosts(User $user)
+    public function specifiedUsersPosts($user)
     {
+        // return $user;
         $perPage = 10;
         $users = [];
-        $users[] = $user->id; 
+        $users[] = $user; 
 
         if (!empty($keyword)) {
             $posts = Post::WhereIn('user_id', $users)
@@ -149,6 +152,7 @@ class PostsController extends Controller
     {
 
         $post = Post::findOrFail($id);
+        $post->load('likesCounter', 'user', 'comments.creator');
 
         return view('posts.show', compact('post'));
     }

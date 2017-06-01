@@ -91,12 +91,12 @@
                                     </a>
                                 </div>
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <a class="btn btn-block btn-social btn-twitter" href="{{url('/login/twitter')}}">
                                         <span class="fa fa-twitter"></span>
                                         {{ trans('form.twitter_signin') }}
                                     </a>
-                                </div>
+                                </div> --}}
 
                             </div>
 

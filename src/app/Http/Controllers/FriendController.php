@@ -44,7 +44,7 @@ class FriendController extends Controller
     	$user->acceptFriendRequest($sender);
         
         /*Notify the user to who send the friend request*/
-        $notifiableUser = $showFriendRequests;
+        $notifiableUser = $sender;
         $notifiableUser->notify(new FriendRequestAccepted(auth()->user()));
 
     	return back();
@@ -89,6 +89,25 @@ class FriendController extends Controller
         $users = User::all()->except($CurrentUser->id); 
         return view('user.findfriends', compact('CurrentUser', 'users'));
     }
+
+    /**
+    *   Return view of all Users
+    */
+    public function searchUsers(Request $request)
+    {
+        $keyword = $request->get('query');
+        // dd($keyword);
+        $CurrentUser = auth()->user();
+        $except = $CurrentUser->getFriends()->pluck('id');
+        $except[] = $CurrentUser->id;
+        $users = User::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('id', 'LIKE', "%$keyword%")
+                ->get()
+                ->except($CurrentUser->id); 
+        return view('user.findfriends', compact('CurrentUser', 'users'));
+    }
+
+
 
     /**
     *   Return view of all Users

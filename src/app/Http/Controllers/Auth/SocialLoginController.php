@@ -8,6 +8,7 @@ use App\User;
 use Socialite;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class SocialLoginController extends Controller
 {
@@ -48,6 +49,10 @@ class SocialLoginController extends Controller
         }
 
         Auth::login($user, false);
+        if($this->logoutIfNotActive($user)){
+            return redirect('/error');
+        }
+
 
         return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
@@ -82,6 +87,10 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
+        if($this->logoutIfNotActive($user)){
+            return redirect('/error');
+        }
+
         return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
 
@@ -115,6 +124,10 @@ class SocialLoginController extends Controller
 
         Auth::login($user, false);
 
+        if($this->logoutIfNotActive($user)){
+            return redirect('/error');
+        }
+
         return redirect()->intended()->withCookie( Cookie::forever('lang', $user->lang) );
     }
 
@@ -124,5 +137,18 @@ class SocialLoginController extends Controller
     {
         return User::where('email', $serviceUser->getEmail())->first();
     }
+
+    protected function logoutIfNotActive(User $user)
+    {
+        if(!$user->activated){
+            // dd('ddd');
+            Auth::logout();
+            return true;
+        }
+
+        return false;
+    }
+
+    
 
 }

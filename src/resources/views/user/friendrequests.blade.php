@@ -15,6 +15,9 @@
                     <div class="row">
                     <div class="col-md-6 col-sm-offset-1">
                     <h4>Friend Requests</h4>
+                    @if ($friendRequests->count() <= 0)
+                                    No FriendRequests
+                    @endif
                     <div class="table-responsive">
                     <table class="table table-responsive table-user-information">
                         <tbody>

@@ -32,7 +32,7 @@ class UserController extends Controller
     public function activate(User $user)
     {
         $user->update(['activated' => true]);
-        return 'success';
+        return $user;
     }
 
     /**
@@ -44,7 +44,7 @@ class UserController extends Controller
     public function deactivate(User $user)
     {
         $user->update(['activated' => false]);
-        return 'success';
+        return $user;
     }
 
     /**

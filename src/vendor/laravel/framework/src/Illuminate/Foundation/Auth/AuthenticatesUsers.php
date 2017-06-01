@@ -113,7 +113,10 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        if(!$user->activated){
+            Auth::logout();
+            
+        }
     }
 
     /**

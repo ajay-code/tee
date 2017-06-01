@@ -1,7 +1,10 @@
 <?php
-require('test.php');
 /* User Login Routes */
 Auth::routes();
+
+require('test.php');
+
+
 
 /*Account verification*/
 Route::get('register/confirm/{token}', 'Auth\ActivationController@confirmEmail');

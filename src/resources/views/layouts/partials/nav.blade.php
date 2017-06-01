@@ -20,6 +20,16 @@
                 </span>
             </a>
         </div>
+        <div class="col-md-4">
+        <form action="{{ url('/search') }}" class="margin-top-10">
+                          <div class="input-group form">
+                               <input type="text" class="form-control" name="query" placeholder="Search ...">
+                               <span class="input-group-btn">
+                                 <button class="btn btn-primary" type="submit">Search</button>
+                               </span>
+                          </div>
+        </form>
+        </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
@@ -34,20 +44,28 @@
                         <a href=" {{ route('messages') }} ">Messages @include('message.unread-count')</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a id="notification" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Notifications
-                                <span class="caret"></span>
+                                @if (auth()->user()->unreadnotifications()->count() > 0)
+                                    <span class="label label-danger">{{ auth()->user()->unreadnotifications()->count() }}</span>
+                                @endif
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            @each('layouts.partials.notification',auth()->user()->notifications, 'notification')                           
-                                
-                        </ul>
+                        
+                        @if (auth()->user()->unreadnotifications()->count() > 0)
+                            <ul class="dropdown-menu" role="menu">
+                                @each('layouts.partials.notification',auth()->user()->unreadnotifications, 'notification')                           
+                            </ul>
+                        @else()
+                        {{-- {{ dd(auth()->user()->notifications->chunk(3)[0]) }} --}}
+                            <ul class="dropdown-menu" role="menu">
+                                @each('layouts.partials.notification', auth()->user()->notifications->chunk(6)[0] , 'notification')                           
+                            </ul>
+                        @endif
 
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href=" {{ route('user.find.friends') }} ">Find Friends</a>
-                    </li>
+                    </li> --}}
                 
                 
                     <li class="dropdown">

@@ -3,43 +3,21 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {{-- @include('admin.sidebar') --}}
+                        
+            <div class="col-sm-4 col-md-3">
+                @component('user.sidebar')
+                        @slot('uploadimage')
+                            <div class="panel panel-default padding-top-10">
+                                <div class="panel-body">
+                                    <button id="upload-pic-button" class="btn btn-block btn-success" data-toggle="modal" data-target="#upload-pic">Change Profile Picture</button>
+                                </div>
+                            </div>
+                        @endslot
+                @endcomponent
+            </div>
 
-            <div class="col-md-9">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Post {{ $post->id }}</div>
-                    <div class="panel-body">
-
-                        <a href="{{ url('/posts') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <a href="{{ url('/posts/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                        {!! Form::open([
-                            'method'=>'DELETE',
-                            'url' => ['/posts', $post->id],
-                            'style' => 'display:inline'
-                        ]) !!}
-                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
-                                    'type' => 'submit',
-                                    'class' => 'btn btn-danger btn-xs',
-                                    'title' => 'Delete Post',
-                                    'onclick'=>'return confirm("Confirm delete?")'
-                            ))!!}
-                        {!! Form::close() !!}
-                        <br/>
-                        <br/>
-
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <th>ID</th><td>{{ $post->id }}</td>
-                                    </tr>
-                                    <tr><th> Body </th><td> {{ $post->body }} </td></tr><tr><th> User Id </th><td> {{ $post->user_id }} </td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="col-md-9 col-sm-8">
+                <post :post="{{ json_encode($post) }}"></post>
             </div>
         </div>
     </div>

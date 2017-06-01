@@ -51,7 +51,7 @@
                     <p v-if="user.country"><b>Country: </b><span v-text="user.country"></span></p>
                     <p v-if="user.city"><b>city: </b><span v-text="user.city"></span></p>
                     <p><b>Created at:  </b><span v-text="this.createdAt"></span></p>
-                    <button v-if="user.isActive" @click="deactivate" class="btn btn-danger">Deactivate</button>
+                    <button v-if="user.activated" @click="deactivate" class="btn btn-danger">Deactivate</button>
                     <button v-else @click="activate" class="btn btn-primary">Activate</button>
                 </div>
                 </div>
@@ -86,12 +86,12 @@
                     })
                 },
                 activate: function(){
-                    axios.get('admin/api/users/' + this.user.id + '/activate').then(res => {
+                    axios.get('/admin/api/users/' + this.user.id + '/activate').then(res => {
                         this.user = res.data;
                     })
                 },
                 deactivate: function(){
-                  axios.get('admin/api/users/' + this.user.id + '/deactivate').then(res => {
+                  axios.get('/admin/api/users/' + this.user.id + '/deactivate').then(res => {
                         this.user = res.data;
                     })
                 }

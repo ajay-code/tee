@@ -18,8 +18,8 @@
 	@elseif($notification->type == 'App\Notifications\Commented')
 		<a href="{{ url('/posts'). '/' . $post->id }}">
 			
-			<img class="notification-image " src="{{ $from->thumbnail() }}" alt="{{ $from->name }}">
-			<span class="small pull-left">{{ $from->name }} commented your Post</span>
+			<img class="notification-image pull-left" src="{{ $from->thumbnail() }}" alt="{{ $from->name }}">
+			<span class="small pull-left">{{ $from->name }} commented on your Post</span>
 
 			<div class="clearfix"></div>
 			
