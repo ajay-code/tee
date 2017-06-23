@@ -56,10 +56,11 @@
                                 @each('layouts.partials.notification',auth()->user()->unreadnotifications, 'notification')                           
                             </ul>
                         @else()
-                        {{-- {{ dd(auth()->user()->notifications->chunk(3)[0]) }} --}}
+                            @if (auth()->user()->notifications()->count() > 0)
                             <ul class="dropdown-menu" role="menu">
                                 @each('layouts.partials.notification', auth()->user()->notifications->chunk(6)[0] , 'notification')                           
                             </ul>
+                            @endif
                         @endif
 
                     </li>
