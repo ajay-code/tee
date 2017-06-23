@@ -41,6 +41,7 @@ class SocialLoginController extends Controller
                 "lastname" => isset($name[1]) ? $name[1]: '',
                 "email" => $serviceUser->getEmail(),
                 "verified" => true,
+                "activated" => true,
             ]);
 
             $user->save();
@@ -78,6 +79,7 @@ class SocialLoginController extends Controller
                 "lastname" => isset($name[1]) ? $name[1]: '',
                 "email" => $serviceUser->getEmail(),
                 "verified" => true,
+                "activated" => true,
             ]);
 
             $user->save();
@@ -115,6 +117,7 @@ class SocialLoginController extends Controller
                 "lastname" => isset($name[1]) ? $name[1]: '',
                 "email" => $serviceUser->getEmail(),
                 "verified" => true,
+                "activated" => true,
             ]);
 
             $user->save();
@@ -141,7 +144,6 @@ class SocialLoginController extends Controller
     protected function logoutIfNotActive(User $user)
     {
         if(!$user->activated){
-            // dd('ddd');
             Auth::logout();
             return true;
         }

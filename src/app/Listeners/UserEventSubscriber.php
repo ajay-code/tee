@@ -12,16 +12,7 @@ class UserEventSubscriber
      */
     public function onUserLogin($event) {
         if($event->user){
-
-
-        // if(!$event->user->activated){
-        //     Alert::info('your account is deactivated by the Admin. Please Contact teemates@info.com');
-        //     Auth::logout();
-        //     return view('auth.login');
-        //     // dd('ds');
-        // }else{
             $event->user->update(['loggedin' => true]);
-        // }
         }
     }
 
