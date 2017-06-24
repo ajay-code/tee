@@ -20,7 +20,8 @@
                 </span>
             </a>
         </div>
-        <div class="col-md-4">
+        @if (Auth::check())
+        <div class="col-md-4 hidden-xs hidden-sm" >
         <form action="{{ url('/search') }}" class="margin-top-10">
                           <div class="input-group form">
                                <input type="text" class="form-control" name="query" placeholder="Search ...">
@@ -113,6 +114,7 @@
                 @endif
             </ul>
         </div>
+        @endif
     </div>
 </nav>
 
