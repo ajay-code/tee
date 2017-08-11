@@ -17,7 +17,7 @@
 
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Edit Setting</div>
+                    <div class="panel-heading">@lang('common.edit_settings')</div>
                     <div class="panel-body">
                         {{-- <a href="{{ url('/settings/setting') }}" title="Back"><button class="btn btn-warning btn-xs"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a> --}}
                         <br />

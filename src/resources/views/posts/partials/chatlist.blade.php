@@ -1,7 +1,7 @@
                 <div class="panel panel-default"> <!-- Chatlist Panel -->
                     @if ($onlineFriends->count() <= 0)
                             <div class="padding-left-10">   
-                                No friend is Online
+                                @lang('common.noFriendIsOnline')
                             </div>
                     @else
                         <div class="padding-left-10">Friends Online</div>
@@ -26,7 +26,9 @@
                         <div class="col-sm-12 ">
                             <div class=" border-top-dark padding-top-10">
                             <div class="col-xs-6">
-                                <h5 class="padding-left-10">Change status</h5>
+                                <h5 class="padding-left-10">
+                                    @lang('common.changeStatus')
+                                </h5>
                             </div>
                             <div class="col-xs-6">
                                 <input id="status" type="checkbox" data-toggle="toggle" data-on="Online" data-off="Offline" data-onstyle="success" data-offstyle="danger"

@@ -8,7 +8,7 @@
 
             <div v-if="busy" class="text-center padding-bottom-10">
                 <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                <span class="sr-only">Loading...</span>
+                <span class="sr-only" v-text="this.$lang.messages.loading"></span>
             </div>
             
         </div><!-- End Of col 12 -->

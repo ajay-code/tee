@@ -24,9 +24,9 @@
         <div class="col-md-4 hidden-xs hidden-sm" >
         <form action="{{ url('/search') }}" class="margin-top-10">
                           <div class="input-group form">
-                               <input type="text" class="form-control" name="query" placeholder="Search ...">
+                               <input type="text" class="form-control" name="query" placeholder="@lang('common.search') ...">
                                <span class="input-group-btn">
-                                 <button class="btn btn-primary" type="submit">Search</button>
+                                 <button class="btn btn-primary" type="submit">@lang('common.search')</button>
                                </span>
                           </div>
         </form>
@@ -42,11 +42,11 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
                     <li>
-                        <a href=" {{ route('messages') }} ">Messages @include('message.unread-count')</a>
+                        <a href=" {{ route('messages') }} "> @lang('common.messages') @include('message.unread-count')</a>
                     </li>
                     <li class="dropdown">
                         <a id="notification" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Notifications
+                                @lang('common.notifications')
                                 @if (auth()->user()->unreadnotifications()->count() > 0)
                                     <span class="label label-danger">{{ auth()->user()->unreadnotifications()->count() }}</span>
                                 @endif
@@ -81,19 +81,19 @@
                             <li>
                                 <a href="{{ route('user.profile') }}">
                                     <i class="fa fa-user-circle"></i>
-                                    Profile
+                                    @lang('common.profile')
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('user.find.friends') }}">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Find Friends
+                                    @lang('common.findFriends')
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('user.friendrequest') }}">
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                Friend Requests
+                                    @lang('common.friendRequests')
                                 <span class="badge">{{ auth()->user()->getFriendRequests()->count() }}</span>
                                 </a>
                             </li>
@@ -102,7 +102,7 @@
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                     <i class="fa fa-sign-out"></i>
-                                    Logout
+                                    @lang('common.logout')
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

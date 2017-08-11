@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+window.Lang = require('vuejs-localization');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +28,11 @@ Vue.component('comments', require('./components/comments/Comments.vue'));
 Vue.component('comment', require('./components/comments/Comment.vue'));
 Vue.component('comment-form', require('./components/comments/Form.vue'));
 
+//Notice that you need to specify the lang folder, in this case './lang' 
+Lang.requireAll(require.context('./lang', true, /\.js$/));
+Vue.use(Lang, {
+	default : window.Laravel.lang,
+});
 
 const app = new Vue({
     el: '#app'

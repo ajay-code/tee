@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 213);
+/******/ 	return __webpack_require__(__webpack_require__.s = 217);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(186)("./" + name);
+            __webpack_require__(188)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -15350,7 +15350,7 @@ var _defaultParams2 = _interopRequireWildcard(_defaultParams);
  * Add modal + overlay to DOM
  */
 
-var _injectedHTML = __webpack_require__(189);
+var _injectedHTML = __webpack_require__(191);
 
 var _injectedHTML2 = _interopRequireWildcard(_injectedHTML);
 
@@ -27942,19 +27942,19 @@ module.exports = exports['default'];
 
 
 /* styles */
-__webpack_require__(209)
+__webpack_require__(211)
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(162),
   /* template */
-  __webpack_require__(205),
+  __webpack_require__(207),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\messanger\\form.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/messanger/form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -27994,7 +27994,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(211)
+var listToStyles = __webpack_require__(213)
 
 /*
 type StyleObject = {
@@ -28277,6 +28277,7 @@ module.exports = function(module) {
  */
 
 __webpack_require__(179);
+window.Lang = __webpack_require__(215);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28288,21 +28289,27 @@ __webpack_require__(179);
 // Vue.config.debug = false;
 // Vue.config.silent = true;
 
-Vue.component('chat', __webpack_require__(195));
+Vue.component('chat', __webpack_require__(197));
 Vue.component('message-form', __webpack_require__(134));
-Vue.component('posts', __webpack_require__(198));
-Vue.component('posts-url', __webpack_require__(199));
-Vue.component('post-form', __webpack_require__(196));
-Vue.component('post', __webpack_require__(197));
-Vue.component('comments', __webpack_require__(193));
-Vue.component('comment', __webpack_require__(192));
-Vue.component('comment-form', __webpack_require__(194));
+Vue.component('posts', __webpack_require__(200));
+Vue.component('posts-url', __webpack_require__(201));
+Vue.component('post-form', __webpack_require__(198));
+Vue.component('post', __webpack_require__(199));
+Vue.component('comments', __webpack_require__(195));
+Vue.component('comment', __webpack_require__(194));
+Vue.component('comment-form', __webpack_require__(196));
+
+//Notice that you need to specify the lang folder, in this case './lang' 
+Lang.requireAll(__webpack_require__(216));
+Vue.use(Lang, {
+  default: window.Laravel.lang
+});
 
 var app = new Vue({
   el: '#app'
 });
 
-__webpack_require__(182);
+__webpack_require__(184);
 __webpack_require__(178);
 __webpack_require__(167);
 __webpack_require__(168);
@@ -29451,6 +29458,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -29468,6 +29478,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        uploadOrChange: function uploadOrChange() {
+            if (this.form.image) {
+                return this.$lang.messages.change_photo;
+            }
+            return this.$lang.messages.upload_photo;
+        }
+    },
     methods: {
         post: function post() {
             var _this = this;
@@ -29487,11 +29505,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         processFile: function processFile(event) {
             this.form.image = event.target.files[0];
             console.log(event.target.files.length);
-            if (event.target.files.length > 0) {
-                $('.label-text').html('Change Photo');
-            } else {
-                $('.label-text').html('Upload Photo');
-            }
+            // if(event.target.files.length > 0){
+            //     $('.label-text').html('Change Photo')
+            // }else{
+            //     $('.label-text').html('Upload Photo')
+            // }
             $('#preview').html(this.getImageThumbnailHtml(this.form.image));
             var fileReader = new FileReader();
             fileReader.onload = function (event) {
@@ -30369,112 +30387,112 @@ url.userPlace = '/api/user/places';
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {window.findFriendsByLocation = function () {
-        var map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                        lat: 54.5259614,
-                        lng: 15.255118700000025
-                },
-                zoom: 2,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: 54.5259614,
+      lng: 15.255118700000025
+    },
+    zoom: 2,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  var bounds = new google.maps.LatLngBounds();
+  var markers = [];
+  var infowindow = new google.maps.InfoWindow({ maxWidth: 250 });
+
+  _.each(locations, function (location) {
+    var user = location.user;
+    clubLatLng = new google.maps.LatLng(location.lat, location.lng);
+    var photo = storageUrl + '/avatar/' + location.user.avatar;
+    var thumbnail = storageUrl + '/avatar/tn-' + location.user.avatar;
+    var marker = new google.maps.Marker({
+      position: clubLatLng,
+      map: map,
+      location: location.location,
+      id: location.id,
+      title: location.location,
+      animation: google.maps.Animation.DROP,
+      icon: thumbnail
+    });
+    bounds.extend(clubLatLng);
+    markers.push(marker);
+
+    var content = '<div id="iw-container"> \n                        <div class="iw-title text-center">' + user.name + '</div> \n                        <div class="iw-content"> \n                          <img class="profile-thumbnail" src="' + photo + '" alt="' + user.name + '" height="120"> \n                          <div class="text-center">\n                            <p><strong class="bold">Within</strong> ' + Math.round(location.distance) + 'Km</p>\n                            <p><a href="' + ('/users/' + user.id) + '" class="btn btn-success "> Visit Profile</a></p>\n                          </div>\n                        </div> \n                    </div>';
+
+    google.maps.event.addListener(marker, 'click', function (marker, content, infowindow) {
+      return function () {
+        infowindow.setContent(content);
+        infowindow.open(map, marker);
+        // windows.push(infowindow)
+        google.maps.event.addListener(map, 'click', function () {
+          infowindow.close();
         });
-        var bounds = new google.maps.LatLngBounds();
-        var markers = [];
-        var infowindow = new google.maps.InfoWindow({ maxWidth: 250 });
+      };
+    }(marker, content, infowindow));
+  });
 
-        _.each(locations, function (location) {
-                var user = location.user;
-                clubLatLng = new google.maps.LatLng(location.lat, location.lng);
-                var photo = storageUrl + '/avatar/' + location.user.avatar;
-                var thumbnail = storageUrl + '/avatar/tn-' + location.user.avatar;
-                var marker = new google.maps.Marker({
-                        position: clubLatLng,
-                        map: map,
-                        location: location.location,
-                        id: location.id,
-                        title: location.location,
-                        animation: google.maps.Animation.DROP,
-                        icon: thumbnail
-                });
-                bounds.extend(clubLatLng);
-                markers.push(marker);
+  if (markers.length == 1) {
+    map.setCenter(bounds.getCenter());
+    map.setZoom(3);
+  } else if (!bounds.isEmpty()) {
+    map.fitBounds(bounds);
+    map.setCenter(bounds.getCenter());
+  }
 
-                var content = '<div id="iw-container"> \n                        <div class="iw-title text-center">' + user.name + '</div> \n                        <div class="iw-content"> \n                          <img class="profile-thumbnail" src="' + photo + '" alt="' + user.name + '" height="120"> \n                          <div class="text-center">\n                            <p><strong class="bold">Within</strong> ' + Math.round(location.distance) + 'Km</p>\n                            <p><a href="' + ('/users/' + user.id) + '" class="btn btn-success "> Visit Profile</a></p>\n                          </div>\n                        </div> \n                    </div>';
+  // *
+  // START INFOWINDOW CUSTOMIZE.
+  // The google.maps.event.addListener() event expects
+  // the creation of the infowindow HTML structure 'domready'
+  // and before the opening of the infowindow, defined styles are applied.
+  // *
+  google.maps.event.addListener(infowindow, 'domready', function () {
 
-                google.maps.event.addListener(marker, 'click', function (marker, content, infowindow) {
-                        return function () {
-                                infowindow.setContent(content);
-                                infowindow.open(map, marker);
-                                // windows.push(infowindow)
-                                google.maps.event.addListener(map, 'click', function () {
-                                        infowindow.close();
-                                });
-                        };
-                }(marker, content, infowindow));
-        });
+    // Reference to the DIV that wraps the bottom of infowindow
+    var iwOuter = $('.gm-style-iw');
 
-        if (markers.length == 1) {
-                map.setCenter(bounds.getCenter());
-                map.setZoom(3);
-        } else if (!bounds.isEmpty()) {
-                map.fitBounds(bounds);
-                map.setCenter(bounds.getCenter());
-        }
+    /* Since this div is in a position prior to .gm-div style-iw.
+     * We use jQuery and create a iwBackground variable,
+     * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
+    */
+    var iwBackground = iwOuter.prev();
 
-        // *
-        // START INFOWINDOW CUSTOMIZE.
-        // The google.maps.event.addListener() event expects
-        // the creation of the infowindow HTML structure 'domready'
-        // and before the opening of the infowindow, defined styles are applied.
-        // *
-        google.maps.event.addListener(infowindow, 'domready', function () {
+    // Removes background shadow DIV
+    iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
 
-                // Reference to the DIV that wraps the bottom of infowindow
-                var iwOuter = $('.gm-style-iw');
+    // Removes white background DIV
+    iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
 
-                /* Since this div is in a position prior to .gm-div style-iw.
-                 * We use jQuery and create a iwBackground variable,
-                 * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
-                */
-                var iwBackground = iwOuter.prev();
+    // Moves the infowindow 115px to the right.
+    iwOuter.parent().parent().css({ left: '64px' });
 
-                // Removes background shadow DIV
-                iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
+    // Moves the shadow of the arrow 76px to the left margin.
+    iwBackground.children(':nth-child(1)').attr('style', function (i, s) {
+      return s + 'left: 76px !important;';
+    });
 
-                // Removes white background DIV
-                iwBackground.children(':nth-child(4)').css({ 'display': 'none' });
+    // Moves the arrow 76px to the left margin.
+    iwBackground.children(':nth-child(3)').attr('style', function (i, s) {
+      return s + 'left: 76px !important;';
+    });
 
-                // Moves the infowindow 115px to the right.
-                iwOuter.parent().parent().css({ left: '64px' });
+    // Changes the desired tail shadow color.
+    iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
 
-                // Moves the shadow of the arrow 76px to the left margin.
-                iwBackground.children(':nth-child(1)').attr('style', function (i, s) {
-                        return s + 'left: 76px !important;';
-                });
+    // Reference to the div that groups the close button elements.
+    var iwCloseBtn = iwOuter.next();
 
-                // Moves the arrow 76px to the left margin.
-                iwBackground.children(':nth-child(3)').attr('style', function (i, s) {
-                        return s + 'left: 76px !important;';
-                });
+    // Apply the desired effect to the close button
+    iwCloseBtn.css({ height: '26px', width: '27px', opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
 
-                // Changes the desired tail shadow color.
-                iwBackground.children(':nth-child(3)').find('div').children().css({ 'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index': '1' });
+    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
+    if ($('.iw-content').height() < 140) {
+      $('.iw-bottom-gradient').css({ display: 'none' });
+    }
 
-                // Reference to the div that groups the close button elements.
-                var iwCloseBtn = iwOuter.next();
-
-                // Apply the desired effect to the close button
-                iwCloseBtn.css({ height: '26px', width: '27px', opacity: '1', right: '38px', top: '3px', border: '7px solid #48b5e9', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9' });
-
-                // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-                if ($('.iw-content').height() < 140) {
-                        $('.iw-bottom-gradient').css({ display: 'none' });
-                }
-
-                // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
-                iwCloseBtn.mouseout(function () {
-                        $(this).css({ opacity: '1' });
-                });
-        });
+    // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
+    iwCloseBtn.mouseout(function () {
+      $(this).css({ opacity: '1' });
+    });
+  });
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -30577,7 +30595,7 @@ function getRoundedCanvas(sourceCanvas) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
-window._ = __webpack_require__(185);
+window._ = __webpack_require__(187);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -30587,7 +30605,7 @@ window._ = __webpack_require__(185);
 
 window.$ = window.jQuery = __webpack_require__(1);
 
-__webpack_require__(181);
+__webpack_require__(183);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -30595,7 +30613,7 @@ __webpack_require__(181);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(212);
+window.Vue = __webpack_require__(214);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -30629,7 +30647,7 @@ $.ajaxSetup({
     'X-XSRF-TOKEN': window.Laravel.csrfToken
   }
 });
-__webpack_require__(191);
+__webpack_require__(193);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -30726,6 +30744,33 @@ var Errors = function () {
 
 /***/ }),
 /* 181 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  hello_world: 'Hello World!',
+  whats_on_mind: "What's on your mind...",
+  change_photo: 'change photo',
+  upload_photo: 'Upload Photo',
+  post: 'Post',
+  loading: 'Loading...'
+};
+
+/***/ }),
+/* 182 */
+/***/ (function(module, exports) {
+
+module.exports = {
+  hello_world: 'Bonjour le monde!',
+  whats_on_mind: 'Dans ton esprit...',
+  change_photo: 'Changer la photo',
+  upload_photo: 'Ajouter une Photo',
+  post: 'Poster',
+  loading: 'Chargement...'
+
+};
+
+/***/ }),
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -33109,7 +33154,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -36672,21 +36717,21 @@ return Cropper;
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(17)();
 exports.push([module.i, "\n.message-form__textarea{\n    min-height:20px !important;\n    height: 80px !important;\n}\n.message-form__submit{\n    border-radius: 5px !important;\n    color: white;\n}\n", ""]);
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(17)();
 exports.push([module.i, "\n.row[data-v-f67f0478]{\n    margin: 0;\n}\n", ""]);
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -53778,7 +53823,7 @@ exports.push([module.i, "\n.row[data-v-f67f0478]{\n    margin: 0;\n}\n", ""]);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(136), __webpack_require__(137)(module)))
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -54027,11 +54072,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 186;
+webpackContext.id = 188;
 
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54172,7 +54217,7 @@ exports['default'] = {
 module.exports = exports['default'];
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54257,7 +54302,7 @@ exports['default'] = handleKeyDown;
 module.exports = exports['default'];
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54305,7 +54350,7 @@ exports["default"] = injectedHTML;
 module.exports = exports["default"];
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54536,7 +54581,7 @@ exports['default'] = setParameters;
 module.exports = exports['default'];
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54571,9 +54616,9 @@ var _sweetAlertInitialize$getModal$getOverlay$getInput$setFocusStyle$openModal$r
 
 // Handle button events and keyboard events
 
-var _handleButton$handleConfirm$handleCancel = __webpack_require__(187);
+var _handleButton$handleConfirm$handleCancel = __webpack_require__(189);
 
-var _handleKeyDown = __webpack_require__(188);
+var _handleKeyDown = __webpack_require__(190);
 
 var _handleKeyDown2 = _interopRequireWildcard(_handleKeyDown);
 
@@ -54583,7 +54628,7 @@ var _defaultParams = __webpack_require__(133);
 
 var _defaultParams2 = _interopRequireWildcard(_defaultParams);
 
-var _setParameters = __webpack_require__(190);
+var _setParameters = __webpack_require__(192);
 
 var _setParameters2 = _interopRequireWildcard(_setParameters);
 
@@ -54845,20 +54890,20 @@ if (typeof window !== 'undefined') {
 module.exports = exports['default'];
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(158),
   /* template */
-  __webpack_require__(201),
+  __webpack_require__(203),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\comments\\Comment.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/comments/Comment.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Comment.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -54879,20 +54924,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(159),
   /* template */
-  __webpack_require__(207),
+  __webpack_require__(209),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\comments\\Comments.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/comments/Comments.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Comments.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -54913,20 +54958,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(160),
   /* template */
-  __webpack_require__(204),
+  __webpack_require__(206),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\comments\\Form.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/comments/Form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -54947,24 +54992,24 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(210)
+__webpack_require__(212)
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(161),
   /* template */
-  __webpack_require__(208),
+  __webpack_require__(210),
   /* scopeId */
   "data-v-f67f0478",
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\messanger\\chat.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/messanger/chat.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] chat.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -54985,20 +55030,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(163),
   /* template */
-  __webpack_require__(202),
+  __webpack_require__(204),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\posts\\Form.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/posts/Form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -55019,20 +55064,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(164),
   /* template */
-  __webpack_require__(200),
+  __webpack_require__(202),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\posts\\Post.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/posts/Post.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Post.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -55053,20 +55098,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(165),
   /* template */
-  __webpack_require__(206),
+  __webpack_require__(208),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\posts\\Posts.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/posts/Posts.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Posts.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -55087,20 +55132,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 199 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(3)(
   /* script */
   __webpack_require__(166),
   /* template */
-  __webpack_require__(203),
+  __webpack_require__(205),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\wamp\\www\\projects\\github\\tee-ftp\\src\\resources\\assets\\js\\components\\posts\\PostsUrl.vue"
+Component.options.__file = "/Users/ajaysingh/code/tee/src/resources/assets/js/components/posts/PostsUrl.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] PostsUrl.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -55121,7 +55166,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 200 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55232,7 +55277,7 @@ if (false) {
 }
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55275,7 +55320,7 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55316,7 +55361,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "cols": "30",
       "rows": "6",
       "id": "body",
-      "placeholder": "Whats on your mind...."
+      "placeholder": this.$lang.messages.whats_on_mind
     },
     domProps: {
       "value": _vm._s(_vm.form.body)
@@ -55327,9 +55372,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.form.body = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-2"
+  }, [_c('button', {
+    staticClass: "btn-send",
+    domProps: {
+      "textContent": _vm._s(this.$lang.messages.post)
+    }
+  })]), _vm._v(" "), _c('div', {
     staticClass: "col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c('input', {
+  }, [_c('label', {
+    attrs: {
+      "id": "photo-label",
+      "for": "photo"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-camera"
+  }), _vm._v(" "), _c('span', {
+    staticClass: "label-text",
+    domProps: {
+      "textContent": _vm._s(_vm.uploadOrChange)
+    }
+  })]), _vm._v(" "), _c('input', {
     staticClass: "display-none",
     attrs: {
       "id": "photo",
@@ -55342,7 +55406,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.processFile($event)
       }
     }
-  })]), _vm._v(" "), _c('div', {
+  })]), _vm._v(" "), (_vm.form.image) ? _c('div', {
     staticClass: "col-md-12 hide",
     attrs: {
       "id": "preview"
@@ -55357,25 +55421,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "file-img",
       "alt": "Image preview"
     }
-  })])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-2"
-  }, [_c('button', {
-    staticClass: "btn-send"
-  }, [_vm._v("Post")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('label', {
-    attrs: {
-      "id": "photo-label",
-      "for": "photo"
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-camera"
-  }), _vm._v(" "), _c('span', {
-    staticClass: "label-text"
-  }, [_vm._v("Upload Photo")])])
-}]}
+  })]) : _vm._e()])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -55385,7 +55432,7 @@ if (false) {
 }
 
 /***/ }),
-/* 203 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55405,8 +55452,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-spinner fa-pulse fa-3x fa-fw"
   }), _vm._v(" "), _c('span', {
-    staticClass: "sr-only"
-  }, [_vm._v("Loading...")])]) : _vm._e()])])
+    staticClass: "sr-only",
+    domProps: {
+      "textContent": _vm._s(this.$lang.messages.loading)
+    }
+  })]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -55417,7 +55467,7 @@ if (false) {
 }
 
 /***/ }),
-/* 204 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55483,7 +55533,7 @@ if (false) {
 }
 
 /***/ }),
-/* 205 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55552,7 +55602,7 @@ if (false) {
 }
 
 /***/ }),
-/* 206 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55576,8 +55626,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-spinner fa-pulse fa-3x fa-fw"
   }), _vm._v(" "), _c('span', {
-    staticClass: "sr-only"
-  }, [_vm._v("Loading...")])]) : _vm._e()])])
+    staticClass: "sr-only",
+    domProps: {
+      "textContent": _vm._s(this.$lang.messages.loading)
+    }
+  })]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -55588,7 +55641,7 @@ if (false) {
 }
 
 /***/ }),
-/* 207 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55613,7 +55666,7 @@ if (false) {
 }
 
 /***/ }),
-/* 208 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -55639,13 +55692,13 @@ if (false) {
 }
 
 /***/ }),
-/* 209 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(183);
+var content = __webpack_require__(185);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -55665,13 +55718,13 @@ if(false) {
 }
 
 /***/ }),
-/* 210 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(184);
+var content = __webpack_require__(186);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -55691,7 +55744,7 @@ if(false) {
 }
 
 /***/ }),
-/* 211 */
+/* 213 */
 /***/ (function(module, exports) {
 
 /**
@@ -55724,7 +55777,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 212 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64300,7 +64353,120 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(136)))
 
 /***/ }),
-/* 213 */
+/* 215 */
+/***/ (function(module, exports) {
+
+/*
+ *	Defines the Plugin Class
+ */
+var Plugin = function(){ };
+/*
+ *	Defines the Lang Class
+ */
+var Lang = function(options){
+	//This will hold the current lang
+	this.current_lang = options.lang;
+	//Holds the lag data
+	this.lang_data = {};
+	//Sets the current lang when first start the object
+	this.setLang(this.current_lang);
+};
+
+//This static object will hold all lang files
+Lang.files = {};
+
+/*
+ *	This method is used to set the current lang.
+ */
+Lang.prototype.setLang = function(lang){
+	for(var i in Lang.files){
+		if(i.indexOf('./'+this.current_lang+'/') === 0){
+			var lang_name = i.replace('./'+this.current_lang+'/', '').replace('.js', '');
+			this.lang_data[lang_name] = Lang.files[i];
+		}
+	}
+
+	this.current_lang = lang;
+	this.lang_data = {};
+
+	for(var i in Lang.files){
+		if(i.indexOf('./'+lang+'/') === 0){
+			var lang_name = i.replace('./'+lang+'/', '').replace('.js', '');
+			this[lang_name] = Lang.files[i];
+		}
+	}
+};
+
+/*
+ *	Gets the current lang
+ */
+Lang.prototype.getLang = function(){
+	return this.current_lang;
+};
+
+/*
+ *	Requires all langs file
+ */
+Plugin.requireAll = function(r) { 
+	r.keys().forEach(function(d){
+		Lang.files[d] = r(d);
+	});
+};
+
+/*
+ *	Installs the plugin in the vuejs.
+ */
+Plugin.install = function(Vue, options){
+	var o = options || {};
+
+	var default_lang = o.default || 'en';
+
+	Object.defineProperty(Vue.prototype, '$lang', {
+		get () { return this.$root._lang }
+	});
+
+	if(typeof o != 'object'){
+		console.error('[vue-lang] the options should be an object type.');
+		return false;
+	}
+
+	Vue.mixin({
+	    beforeCreate () {
+	        Vue.util.defineReactive(this, '_lang',  new Lang({lang:default_lang}));
+	    }
+	});
+};
+
+module.exports = Plugin;
+
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./en/messages.js": 181,
+	"./fr/messages.js": 182
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 216;
+
+
+/***/ }),
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(138);

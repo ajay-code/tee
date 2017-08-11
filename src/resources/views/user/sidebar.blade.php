@@ -31,7 +31,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('home') }}">
-							<span class="list-text">Home</span> 
+							<span class="list-text">@lang('common.home')</span> 
 						</a>
 					</div>
 					<div class="clearfix"></div>
@@ -47,7 +47,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('messages') }}">
-							<span class="list-text">Messages </span>
+							<span class="list-text">@lang('common.messages') </span>
 							@include('message.unread-count')
 						</a>
 					</div>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('user.friendrequest') }}">
-							<span class="list-text">Request</span>
+							<span class="list-text">@lang('common.requests')</span>
 							@if (auth()->user()->getFriendRequests()->count() > 0)
 								<span class="label label-danger">{{ auth()->user()->getFriendRequests()->count() }}</span>
 							@endif
@@ -85,7 +85,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('user.friends') }}">
-							<span class="list-text">Friends</span>
+							<span class="list-text">@lang('common.friends')</span>
 							@if (auth()->user()->getFriends()->count() > 0)
 								<span class="label label-danger">{{ auth()->user()->getFriends()->count() }}</span>
 							@endif
@@ -104,7 +104,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('user.find.friendsbylocation') }}">
-							<span class="list-text">People Nearby</span>
+							<span class="list-text">@lang('common.peopleNearby')</span>
 						</a>
 					</div>
 					<div class="clearfix"></div>
@@ -120,7 +120,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('settings') }}">
-							<span class="list-text">Settings</span>
+							<span class="list-text">@lang('common.settings')</span>
 						</a>
 					</div>
 					<div class="clearfix"></div>
@@ -137,7 +137,7 @@
 					</div>
 					<div class="col-xs-10">
 						<a href="{{ route('user.profileinfo') }}">
-							<span class="list-text">Profile Info</span>
+							<span class="list-text">@lang('common.profileInfo')</span>
 						</a>
 					</div>
 					<div class="clearfix"></div>
