@@ -1,0 +1,69 @@
+EN : Username / E-Mail Address FR : Pseudo / Adresse eMail
+EN : Password FR : Mot de Passe
+EN : Remember Me FR : Se souvenir de moi
+EN : Forgot Your Password FR : Mot de Passe Oublié ? 
+EN : Notifications FR : Notifications 
+EN : Search FR : Rechercher 
+
+
+EN : Profile FR : Profil
+EN : Find Friends FR : Retrouver des Amis 
+EN : Friends Requests FR : Demande d’amis 
+EN : Logout FR : Quitter 
+EN : Change Profile Picture	FR : Changer la Photo de Profil
+EN : Home FR : Accueil 
+EN : Messages FR : Messages 
+EN : Requests FR : Demandes 
+EN : Friends FR : Amis 
+EN : People Nearby FR : Carte 
+EN : Settings FR : Préférences 
+EN : Profile Infos FR : Info du Profil 
+EN : Post FR : Poster 
+EN : No Friend Requests FR : Aucune Demande d’Amis 
+EN : Update your location FR : Mise a jour de votre Position 
+EN : Users within 1000km FR : Membres à moins de 1000km 
+EN : Who Can View Post FR : Qui Peut voir mes Posts 
+EN : Who Can View Friends FR : Qui Peut voir La liste de mes Amis 
+EN : Who Can View Request FR : Qui Peut voir mes Demandes 
+EN : Who Can View Message FR : Qui Peut voir mes Messages 
+EN : Everyone FR : Tout le monde 
+EN : Friends FR : Mes Amis 
+EN : Update FR : Sauvegarder
+EN : Edit Settings FR : Editer les préférences 
+EN : Language FR : Langue 
+EN : back FR : retour 
+EN : Cancel FR : Annuler 
+
+
+EN : REGISTER FR : S’inscrire
+
+EN : Username	FR : Pseudo
+EN : First Name FR : Prénom
+EN : Last Name FR : Nom
+EN : Password	FR : Mot de Passe
+EN : Date of Birth* FR : Date de Naissance*
+EN : Phone Number	FR : Téléphone
+EN : Handicap	FR : Handicap
+EN : beginner (35+) / intermediate (15-35) / confirmed (15-) FR : débutant (35+) / intermédiaire (15-35) / confirmé (15-)
+
+EN : Gender FR : Sexe
+EN : Male	FR : Homme
+EN : Female	FR : Femme
+EN : - - - FR : - - - 
+
+EN : Already a member ?	FR : Déjà membre ? 
+
+EN : * Birthdate used for age calculation - actual birthdate never displayed.
+FR : *Date de naissance utilisée pour calculer votre âge, votre date de naissance ne sera pas dévoilée.
+
+
+
+///////////////////////////////////////////
+//////////////////Done/////////////////////
+///////////////////////////////////////////
+EN : Whats on your mind FR : Rechercher 
+EN : Upload Photo FR : Ajouter une Photo 
+EN : Change Photo FR : Changer la Photo 
+EN : Whats on your mind FR : Dans ton esprit
+EN : Loading FR: Chargement
+EN : No friend is Online FR: Aucun ami n'est en ligne
