@@ -28,6 +28,8 @@ return [
     'who_can_view_request' => 'Qui Peut voir mes Demandes',
     'who_can_view_messages' => 'Qui Peut voir mes Messages',
     'edit_settings' => 'Editer les préférences',
+    'lang' => 'La langue',
+
 
 
 ];

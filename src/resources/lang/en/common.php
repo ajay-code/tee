@@ -27,7 +27,6 @@ return [
     'who_can_view_request' => 'Who Can View Request',
     'who_can_view_messages' => 'Who Can View Message',
     'edit_settings' => 'Edit Settings',
-
-
+    'lang' => 'Language',
 
 ];

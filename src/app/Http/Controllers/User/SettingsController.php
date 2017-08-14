@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use Cookie;
 use Session;
 use App\User;
 use App\Setting;
@@ -49,14 +50,26 @@ class SettingsController extends Controller
      */
     public function update(Request $request)
     {
+
+        $this->validate($request, [
+            "can_view_posts" => "required",
+            "can_view_friends" => "required",
+            "can_send_request" => "required",
+            "can_send_message" => "required",
+            "lang" => "required"
+        ]);
         
         $requestData = $request->all();
         
         $setting = auth()->user()->settings;
         $setting->update($requestData);
+        auth()->user()->update([
+            'lang' => $requestData['lang'] 
+        ]);
 
-        Session::flash('flash_message', 'Setting updated!');
+        alert()->success('Setting updated!');
 
+        Cookie::queue('lang', $requestData['lang'] , 2628000);
         return redirect('/settings');
     }
 
