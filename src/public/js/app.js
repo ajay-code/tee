@@ -28314,11 +28314,13 @@ __webpack_require__(178);
 __webpack_require__(167);
 __webpack_require__(168);
 
-$(function () {
-  setInterval(function () {
-    axios.get('/settings/updatelastactivity');
-  }, 10000);
-});
+if (window.user) {
+  $(function () {
+    setInterval(function () {
+      axios.get('/settings/updatelastactivity');
+    }, 10000);
+  });
+}
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),

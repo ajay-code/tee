@@ -56,7 +56,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 @each('layouts.partials.notification',auth()->user()->unreadnotifications, 'notification')                           
                             </ul>
-                        @else()
+                        @else
                             @if (auth()->user()->notifications()->count() > 0)
                             <ul class="dropdown-menu" role="menu">
                                 @each('layouts.partials.notification', auth()->user()->notifications->chunk(6)[0] , 'notification')                           
@@ -111,8 +111,28 @@
                             </li>
                         </ul>
                     </li>
+                
+                    
                 @endif
             </ul>
+
+            @else
+            
+            <div class="col-sm-4 pull-right">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <form method="post" id="form-lang"  action="/change/lang">
+                        {{ csrf_field() }}
+                        <select class="form-control" id="lang" name="lang" onchange="event.preventDefault();
+                                             document.getElementById('form-lang').submit();" value="fr" >
+                            <option value="en" {{ App::getLocale() == 'en'? 'selected' : '' }}> English</option> 
+                            <option value="fr" {{ App::getLocale() == 'fr'? 'selected' : '' }}><img src="/flags/us-flag.png" alt="">French</option> 
+                        </select>
+                    </form>
+                </li>
+            </ul>
+            </div>
         </div>
         @endif
     </div>

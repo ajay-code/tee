@@ -4,6 +4,7 @@ Auth::routes();
 
 require('test.php');
 
+Route::post('/change/lang', 'LanguageController@change');
 
 
 /*Account verification*/
