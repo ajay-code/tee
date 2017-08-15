@@ -16,9 +16,10 @@
             <button id="getloction-btn" class="btn btn-primary btn-lg" onclick="getloction" >
                 <i class="fa fa-map-marker fa-2x"></i> @lang('common.use_current_location')
             </button>
+            <br>
+            <h1 class="text-center">OR</h1>
         </div>
-        <br>
-        <h1 class="text-center">OR</h1>
+        
         <br>
 
         <form id="form" method="post" action="{{ route('user.location.update') }}" >
