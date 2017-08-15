@@ -25,6 +25,8 @@ return [
         "remember" => "Souviens-toi de moi",
         "forgot_password" => "Mot de passe oublié?",
 
+        'agree_with_terms_and_conditions' => "D'accord avec les termes et conditions",
+
 
         "google_signup" => "Signup avec google",
         "facebook_signup" => "Signup avec Facebook",

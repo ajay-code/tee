@@ -7,15 +7,18 @@
 
         <h2 class="ui center aligned icon header">
             <i class="circular travel icon"></i>
-            Enter your Location
+            @lang('common.enter_your_location')
         </h2>
-        this location will be saved in the database
+        @lang('common.this_loation_will_be_saved_to_database')
         <hr>
-        <button id="getloction-btn" class="btn btn-primary" onclick="getloction" >
-            <i class="fa fa-map-marker fa-2x"></i> Use Current location
-        </button>
-        <br>
-        <h1>OR</h1>
+        <div class="col-xs-12 text-center">
+            <button id="getloction-btn" class="btn btn-primary" onclick="getloction" >
+                <i class="fa fa-map-marker fa-2x"></i> @lang('common.use_current_location')
+            </button>
+            <br>
+            <h1>OR</h1>
+        </div>
+        
         <br>
         <form id="form" method="post" action="{{ route('user.location.store') }}" >
 
@@ -23,7 +26,7 @@
 
             <div class="col-md-12">
                 <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-                    <label>Type your Location Here:</label>
+                    <label>@lang('common.enter_your_location'):</label>
                     <input type="text" name="location" class="form-control" id="pac-input" placeholder="Search Places..." value="{{ old('location') }}" >
                     @if($errors->has('location'))
                         <span class="help-block">{{ $errors->first('location') }}</span>

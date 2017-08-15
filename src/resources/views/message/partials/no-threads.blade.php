@@ -1,1 +1,1 @@
-<p>Sorry, no threads.</p>
+<p>@lang('common.no_conversations')</p>

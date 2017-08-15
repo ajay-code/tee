@@ -13,6 +13,13 @@ return [
     'friends'=> 'Amis',
     'peopleNearby' => 'Carte',
 
+    'register' => 'Registre',
+
+    // Gender
+    'gender' => 'Sexe',
+    'male' => 'Homme',
+    'female' => 'Femme',
+
     // Navigation
     'search' => 'Rechercher',
     'notifications' => 'Notifications',
@@ -30,6 +37,14 @@ return [
     'edit_settings' => 'Editer les préférences',
     'lang' => 'La langue',
 
+    // Messages
+    'no_conversations' => 'Désolé, pas de conversations',
+
+
+    // Maps
+    'use_current_location' => "Utiliser l'emplacement actuel",
+    'enter_your_location' => 'Entrez votre emplacement',
+    'this_loation_will_be_saved_to_database' => 'Cet emplacement sera enregistré dans la base de données',
 
 
 ];

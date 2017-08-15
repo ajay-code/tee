@@ -24,6 +24,8 @@ return [
         "dont_have_account" => "Don't have an account? Sign Up!",
         "remember" => "Remember Me",
         "forgot_password" => "Forgot Your Password?",
+        
+        'agree_with_terms_and_conditions' => 'Agree with the terms and conditions',
 
 
         "google_signup" => "SignUp with Google",

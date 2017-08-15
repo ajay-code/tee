@@ -13,6 +13,14 @@ return [
     'friends'=> 'Friends',
     'peopleNearby' => 'People Nearby',
 
+    'register' => 'Register',
+    
+
+    // Gender
+    'gender' => 'Gender',
+    'male' => 'Male',
+    'female' => 'Female',
+
     // Navigation
     'search' => 'Search',
     'notifications' => 'Notifications',
@@ -28,5 +36,15 @@ return [
     'who_can_view_messages' => 'Who Can View Message',
     'edit_settings' => 'Edit Settings',
     'lang' => 'Language',
+
+    // Messages
+    'no_conversations' => 'Sorry, no Conversations',
+
+
+    // Maps
+
+    'use_current_location' => 'Use Current Location',
+    'enter_your_location' => 'Enter your Location',
+    'this_loation_will_be_saved_to_database' => 'This location will be saved in the database'
 
 ];
